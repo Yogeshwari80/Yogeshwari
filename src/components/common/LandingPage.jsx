@@ -27,57 +27,7 @@ export const LandingPage = () => {
 
     return () => clearInterval(interval);
   }, []);
-  // const containerStyle = {
-   
-  //   backgroundImage: `url(${background1})`,// Replace with your image path
-  //   backgroundSize: "cover",
-  //   backgroundPosition: "center",
-  //   backgroundRepeat: "no-repeat",
-  //   width: "100vw", // ✅ Full width
-  //   height: "100vh", // ✅ Full height
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   color: "white",
-  //   textAlign: "center",
-  // };
-  // const backgroundStyle = {
-  //   position: "absolute",
-  //   top: 0,
-  //   left: 0,
-  //   width: "100%",
-  //   height: "100%",
-  //   backgroundImage: `url(${currentBackground})`,
-  //   backgroundSize: "cover",
-  //   backgroundPosition: "center",
-  //   backgroundRepeat: "no-repeat",
-  //   transition: "opacity 1s ease-in-out",
-  //   zIndex: -2,
-  // };
 
-  // const overlayStyle = {
-  //   position: "absolute",
-  //   top: 0,
-  //   left: 0,
-  //   width: "100%",
-  //   height: "100%",
-  //   backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay
-  //   zIndex: -1,
-  // };
-  // const navStyle = {
-  //   backgroundColor: "#005555", // Dark teal navbar
-  //   padding: "20px 25px",
-  //   position: "fixed",
-  //   top: 0,
-  //   left: 0,
-  //   width: "100%",
-  //   display: "flex",
-  //   justifyContent: "space-between",
-  //   alignItems: "center",
-  //   zIndex: 1000,
-  //   borderRadius: "12px",
-  // };
   const containerStyle = {
     position: "relative", // Ensures overlay and content are positioned correctly
     width: "100vw",
