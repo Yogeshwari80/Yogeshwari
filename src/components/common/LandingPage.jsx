@@ -1,29 +1,123 @@
 
 
-import React, { useState } from "react";
-import background from "../../assets/images/bg.jpg";
+import React, { useEffect, useState } from "react";
+import background1 from "../../assets/images/bg1.jpg";
+import background2 from "../../assets/images/bg2.jpg";
+import background3 from "../../assets/images/bg3.jpg";
+import background4 from "../../assets/images/bg4.jpg";
 import { Link } from "react-router-dom";
 
 
 export const LandingPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [currentBackground, setCurrentBackground] = useState(background1);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const images = [background1, background2, background3];
+    let index = 0;
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        index = (index + 1) % images.length;
+        setCurrentBackground(images[index]);
+        setFade(true);
+      }, 1000); // Fade out duration
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+  // const containerStyle = {
+   
+  //   backgroundImage: `url(${background1})`,// Replace with your image path
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat",
+  //   width: "100vw", // ✅ Full width
+  //   height: "100vh", // ✅ Full height
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   color: "white",
+  //   textAlign: "center",
+  // };
+  // const backgroundStyle = {
+  //   position: "absolute",
+  //   top: 0,
+  //   left: 0,
+  //   width: "100%",
+  //   height: "100%",
+  //   backgroundImage: `url(${currentBackground})`,
+  //   backgroundSize: "cover",
+  //   backgroundPosition: "center",
+  //   backgroundRepeat: "no-repeat",
+  //   transition: "opacity 1s ease-in-out",
+  //   zIndex: -2,
+  // };
+
+  // const overlayStyle = {
+  //   position: "absolute",
+  //   top: 0,
+  //   left: 0,
+  //   width: "100%",
+  //   height: "100%",
+  //   backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay
+  //   zIndex: -1,
+  // };
+  // const navStyle = {
+  //   backgroundColor: "#005555", // Dark teal navbar
+  //   padding: "20px 25px",
+  //   position: "fixed",
+  //   top: 0,
+  //   left: 0,
+  //   width: "100%",
+  //   display: "flex",
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  //   zIndex: 1000,
+  //   borderRadius: "12px",
+  // };
   const containerStyle = {
-    backgroundImage: `url(${background})`,// Replace with your image path
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    width: "100vw", // ✅ Full width
-    height: "100vh", // ✅ Full height
+    position: "relative", // Ensures overlay and content are positioned correctly
+    width: "100vw",
+    height: "100vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    color: "white",
     textAlign: "center",
+    color: "white",
+    overflow: "hidden"
+  };
+
+  const backgroundStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundImage: `url(${currentBackground})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    transition: "opacity 1s ease-in-out",
+    opacity: fade ? 1 : 0,
+    zIndex: -2,
+  };
+
+  const overlayStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay
+    zIndex: -1,
   };
 
   const navStyle = {
-    backgroundColor: "#005555", // Dark teal navbar
+    backgroundColor: "#005555",
     padding: "20px 25px",
     position: "fixed",
     top: 0,
@@ -35,7 +129,6 @@ export const LandingPage = () => {
     zIndex: 1000,
     borderRadius: "12px",
   };
-   
   const logoStyle = {
     fontSize: "24px",
     fontWeight: "bold",
@@ -110,6 +203,8 @@ export const LandingPage = () => {
   return (
     <div style={containerStyle}>
       {/* Navbar */}
+      <div style={backgroundStyle}></div>
+      <div style={overlayStyle}></div>
       <div style={navStyle}>
         <a href="index.html" style={logoStyle}>
           Property
