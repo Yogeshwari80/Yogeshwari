@@ -143,7 +143,7 @@ export const Login = () => {
             <div style={{
               fontSize: '18px',
               fontWeight: '700',
-              color: '#34495e'
+              color: '#3498db',
             }}>
               RE<span style={{ color: '#3498db' }}>F</span>
             </div>
@@ -166,7 +166,7 @@ export const Login = () => {
                     transition={Bounce}
                     />
         
-          <h2 style={{ color: '#34495e', textAlign: 'center', marginBottom: '30px', fontSize: '22px', fontWeight: '600'
+          <h2 style={{ color: '#3498db', textAlign: 'center', marginBottom: '30px', fontSize: '22px', fontWeight: '600'
           }}>
             Good to See You Again!
           </h2>
@@ -208,7 +208,7 @@ export const Login = () => {
   
             <div style={{ textAlign: 'right', marginBottom: '20px' }}>
               <Link to="/forgot-password" style={{
-                color: '#3498db',
+                color:'#3498db',
                 textDecoration: 'none',
                 fontSize: '14px'
               }}>

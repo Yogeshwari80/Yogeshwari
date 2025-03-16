@@ -21,7 +21,7 @@ export const Signup = () => {
     data.role_id = "67beb40ae44bac5f3f079e11";
 
     try {
-      const res = await axios.post("/user", data);
+      const res = await axios.post("http://localhost:8000/user/", data);
 
       // if (res.status === 200) {
       //   toast.success("Signed up Successfully", {

@@ -46,6 +46,7 @@ import { AddProperty } from './components/user/AddProperty'
 import axios from 'axios'
 import PrivateRoutes from './hooks/PrivateRoutes'
 import { useEffect } from 'react'
+import LandingPage from "./components/common/LandingPage";
 
 function App() {
   // useLocation hook from react router dom to see current end point
@@ -69,7 +70,7 @@ function App() {
     
     <div
     className={
-      location.pathname === "/login" || location.pathname === "/login" || location.pathname === "/signup"
+      location.pathname === "/login" || location.pathname === "/signup"
         ? ""
         : "app-wrapper"
     }
@@ -77,6 +78,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/" element ={<LandingPage/>}></Route>
       {/* <Route path="/" element ={<LandingPage/>}></Route> */}
 
       <Route path="" element={<PrivateRoutes />}>

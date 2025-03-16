@@ -53,11 +53,11 @@ export const UserNavbar = ({ toggleSidebar }) => {
       {/*end::Navbar Search*/}
       {/*begin::Messages Dropdown Menu*/}
       <li className="nav-item dropdown">
-        <a className="nav-link" data-bs-toggle="dropdown" href="#">
+        {/* <a className="nav-link" data-bs-toggle="dropdown" href="#">
         <i className="bi bi-chat-text" />
 
           <span className="navbar-badge badge text-bg-danger">3</span>
-        </a>
+        </a> */}
         <div className="dropdown-menu dropdown-menu-lg dropdown-menu-end">
           <a href="#" className="dropdown-item">
             {/*begin::Message*/}
@@ -145,10 +145,10 @@ export const UserNavbar = ({ toggleSidebar }) => {
       {/*end::Messages Dropdown Menu*/}
       {/*begin::Notifications Dropdown Menu*/}
       <li className="nav-item dropdown">
-        <a className="nav-link" data-bs-toggle="dropdown" href="#">
+        {/* <a className="nav-link" data-bs-toggle="dropdown" href="#">
           <i className="bi bi-bell-fill" />
           <span className="navbar-badge badge text-bg-warning">15</span>
-        </a>
+        </a> */}
         <div className="dropdown-menu dropdown-menu-lg dropdown-menu-end">
           <span className="dropdown-item dropdown-header">
             15 Notifications
@@ -195,12 +195,12 @@ export const UserNavbar = ({ toggleSidebar }) => {
           className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
         >
-          <img
+          {/* <img
             src="../../dist/assets/img/user2-160x160.jpg"
             className="user-image rounded-circle shadow"
             alt="User Image"
           />
-          <span className="d-none d-md-inline">Alexander Pierce</span>
+          <span className="d-none d-md-inline">Alexander Pierce</span> */}
         </a>
         <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-end">
           {/*begin::User Image*/}

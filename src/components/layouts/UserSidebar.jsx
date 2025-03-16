@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { UserNavbar } from './UserNavbar'
 import { Link, Outlet } from 'react-router-dom'
+import '../layouts/Sidebar.css'
 
 export const UserSidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -17,18 +18,20 @@ export const UserSidebar = () => {
             isSidebarOpen ? "open" : "d-none"
           }`}        
           data-bs-theme="dark"
-      >
-        <div className="sidebar-brand">
-          
+       >
+        <div className="sidebar-brand" >
           <a href="./index.html" className="brand-link">
             
-            <img
+            {/* <img
               src="./assets/img/AdminLTELogo.png"
               alt="AdminLTE Logo"
               className="brand-image opacity-75 shadow"
             />
+             */}
+
+            <span className="brand-text fw-light" >REF </span>
             
-            <span className="brand-text fw-light">AdminLTE 4</span>
+
             
           </a>
           
@@ -138,3 +141,4 @@ export const UserSidebar = () => {
     </>
   )
 }
+

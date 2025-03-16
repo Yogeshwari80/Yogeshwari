@@ -27,23 +27,21 @@ const [areas, setAreas] = useState([]);
   };
   
   const getCitiesByState = async (stateId) => {
-    // if (!stateId) return; // Prevent empty state selection call
+    
     try {
       const response = await axios.get(`/city/${stateId}`);
       console.log("Cities fetched for state:", stateId, response.data);
       setCities(response.data);
-      setAreas([]); // Reset areas when state changes
+      setAreas([]); 
     } catch (error) {
       console.error("Error fetching cities:", error.response ? error.response.data : error.message);
     }
   };
   
   const getAreasByCity = async (cityId) => {
-    // if (!cityId) return; // Prevent empty city selection call
+
     try {
       const response = await axios.get(`/area/${cityId}`);
-      
-
       console.log("Areas fetched for city:", cityId, response.data);
       setAreas(response.data);
     } catch (error) {
@@ -364,11 +362,10 @@ const [areas, setAreas] = useState([]);
             </div>
             {/* Footer */}
             <div className="card-footer">
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Add Property</button>
             </div>
           </form>
         </div>
       );
       
 }
-
