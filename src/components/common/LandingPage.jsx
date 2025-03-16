@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import background1 from "../../assets/images/bg1.jpg";
 import background2 from "../../assets/images/bg2.jpg";
 import background3 from "../../assets/images/bg3.jpg";
-import background4 from "../../assets/images/bg4.jpg";
+
 import { Link } from "react-router-dom";
 
 
@@ -242,8 +242,9 @@ export const LandingPage = () => {
         <input type="text" placeholder="Your ZIP code or City. e.g. New York" style={inputStyle} />
         <button style={buttonStyle}>Search</button>
       </div>
-     
+      
     </div>
+    
   );
 };
 
