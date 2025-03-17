@@ -96,41 +96,6 @@ const PropertySlider = () => {
 };
 
 
-//   return (
-//     <div style={{ textAlign: "center", padding: "40px 20px", position: "relative" }}>
-//       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "50px"}}>
-//         <h2 style={{ color: "black" }}>POPULAR PROPERTIES</h2>
-//         <Link to="/properties" style={{ textDecoration: "none" }}>
-//           <button style={{ padding: "10px 20px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>View all properties</button>
-//         </Link>
-       
-//       </div>
-//       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-//         <button onClick={prevSlide} style={{ position: "absolute", left: 0, background: "none", border: "none", cursor: "pointer" }}>
-//           <FaChevronLeft size={30} color="#005555" />
-//         </button>
-//         <div style={{ display: "flex", justifyContent: "center", gap: "20px", overflow: "hidden", width: "80%" }}>
-//           {properties.slice(currentIndex, currentIndex + visibleProperties).map((property, index) => (
-//             <div key={index} style={{ width: "300px", position: "relative", textAlign: "left", background: "#fff", borderRadius: "10px", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
-//               <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
-//               <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.3)" }}></div>
-//               <div style={{ padding: "15px", position: "relative", zIndex: 2, textAlign: "center" }}>
-//                 <h3 style={{ color: "#005555", margin: "5px 0" }}>$1,291,000</h3>
-//                 <p style={{ margin: "5px 0", fontSize: "14px" }}>5232 California Fake, Ave. 21BC</p>
-//                 <p style={{ fontWeight: "bold", margin: "5px 0" }}>California, USA</p>
-//                 <p style={{ fontSize: "14px", margin: "5px 0" }}>🏠 2 beds 🛁 2 baths</p>
-//                 <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>See details</button>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//         <button onClick={nextSlide} style={{ position: "absolute", right: 0, background: "none", border: "none", cursor: "pointer" }}>
-//           <FaChevronRight size={30} color="#005555" />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
 
 
 export const LandingPage = () => {
@@ -336,23 +301,7 @@ export const LandingPage = () => {
         <button style={buttonStyle}>Search</button>
       </div>
       </div>
-      {/* <div style={{ textAlign: "center", padding: "60px 20px" }}>
-        <h2 style={{ color: "black" }}>Popular Properties</h2>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
-          {[property1, property2, property3].map((property, index) => (
-            <div key={index} style={{ width: "300px", background: "#fff", borderRadius: "10px", overflow: "hidden", textAlign: "left" }}>
-              <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
-              <div style={{ padding: "15px" }}>
-                <h3 style={{ color: "#005555" }}>$1,291,000</h3>
-                <p>5232 California Fake, Ave. 21BC</p>
-                <p><strong>California, USA</strong></p>
-                <p>🏠 2 beds 🛁 2 baths</p>
-                <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>See details</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
+   
        <div style={{ height: "50px" }}></div>
 
 {/* ✅ Use `PropertySlider` inside `LandingPage` */}
