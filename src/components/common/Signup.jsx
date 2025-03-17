@@ -21,7 +21,7 @@ export const Signup = () => {
     data.role_id = "67beb40ae44bac5f3f079e11";
 
     try {
-      const res = await axios.post("http://localhost:8000/user/", data);
+      const res = await axios.post("http://localhost:8000/api/user/", data);
 
       // if (res.status === 200) {
       //   toast.success("Signed up Successfully", {
@@ -33,7 +33,7 @@ export const Signup = () => {
 
       //   setTimeout(() => {
       //     navigate("/login");
-      //   }, 4000);
+      //   }, 3000);
       // }
       if (res.status === 201) {
         alert("Signup success");

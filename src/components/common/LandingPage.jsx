@@ -1,11 +1,136 @@
 
 
 import React, { useEffect, useState } from "react";
+// import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
+// import PropertySlider from "./PropertySlider";
 import background1 from "../../assets/images/bg1.jpg";
 import background2 from "../../assets/images/bg2.jpg";
 import background3 from "../../assets/images/bg3.jpg";
+import property1 from "../../assets/images/property1.jpg";
+import property2 from "../../assets/images/property2.jpg";
+import property3 from "../../assets/images/property3.jpg";
+import property4 from "../../assets/images/property4.jpg";
+import property5 from "../../assets/images/property5.jpg";
+import property6 from "../../assets/images/property6.jpg";
+import property7 from "../../assets/images/property7.jpg";
+import property8 from "../../assets/images/property8.jpg";
 
-import { Link } from "react-router-dom";
+
+
+import { Link, useNavigate } from "react-router-dom";
+
+
+
+const properties = [
+  property1, property2, property3, property4, 
+  property5, property6, property7, property8
+];
+
+const PropertySlider = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const navigate = useNavigate();
+  const visibleProperties = 3;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex + visibleProperties < properties.length ? prevIndex + 1 : 0
+      );
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + visibleProperties < properties.length ? prevIndex + visibleProperties : 0
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - visibleProperties >= 0 ? prevIndex - visibleProperties : properties.length - visibleProperties
+    );
+  };
+
+  return (
+    <div style={{ textAlign: "center", padding: "40px 0", position: "relative", maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "50px" }}>
+      <h2 style={{ color: "black" }}>POPULAR PROPERTIES</h2>
+        <button 
+          onClick={() => navigate("/signup")}
+          style={{ padding: "10px 20px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+          View all properties
+        </button>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+        <button onClick={prevSlide} style={{ position: "absolute", left: "-40px", background: "none", border: "none", cursor: "pointer" }}>
+          <FaChevronLeft size={30} color="#005555" />
+        </button>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px", overflow: "hidden", width: "100%" }}>
+          {properties.slice(currentIndex, currentIndex + visibleProperties).map((property, index) => (
+            <div key={index} style={{ width: "300px", position: "relative", textAlign: "left", background: "#fff", borderRadius: "10px", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div style={{ position: "relative", width: "100%" }}>
+                <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+                <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.4)", display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, transition: "opacity 0.3s" }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = 0}>
+                  {/* <button style={{ padding: "10px 15px", backgroundColor: "#ffffff", color: "#005555", border: "none", borderRadius: "5px", cursor: "pointer" }}>View Details</button> */}
+                </div>
+              </div>
+              <div style={{ padding: "15px", position: "relative", zIndex: 2, textAlign: "center" }}>
+                <h3 style={{ color: "#005555", margin: "5px 0" }}>$1,291,000</h3>
+                <p style={{ margin: "5px 0", fontSize: "14px" }}>5232 California Fake, Ave. 21BC</p>
+                <p style={{ fontWeight: "bold", margin: "5px 0" }}>California, USA</p>
+                <p style={{ fontSize: "14px", margin: "5px 0" }}>🏠 2 beds 🛁 2 baths</p>
+                <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", marginTop: "10px" ,}}>View Details</button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button onClick={nextSlide} style={{ position: "absolute", right: "-40px", background: "none", border: "none", cursor: "pointer" }}>
+          <FaChevronRight size={30} color="#005555" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+
+//   return (
+//     <div style={{ textAlign: "center", padding: "40px 20px", position: "relative" }}>
+//       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "50px"}}>
+//         <h2 style={{ color: "black" }}>POPULAR PROPERTIES</h2>
+//         <Link to="/properties" style={{ textDecoration: "none" }}>
+//           <button style={{ padding: "10px 20px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>View all properties</button>
+//         </Link>
+       
+//       </div>
+//       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+//         <button onClick={prevSlide} style={{ position: "absolute", left: 0, background: "none", border: "none", cursor: "pointer" }}>
+//           <FaChevronLeft size={30} color="#005555" />
+//         </button>
+//         <div style={{ display: "flex", justifyContent: "center", gap: "20px", overflow: "hidden", width: "80%" }}>
+//           {properties.slice(currentIndex, currentIndex + visibleProperties).map((property, index) => (
+//             <div key={index} style={{ width: "300px", position: "relative", textAlign: "left", background: "#fff", borderRadius: "10px", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
+//               <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+//               <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.3)" }}></div>
+//               <div style={{ padding: "15px", position: "relative", zIndex: 2, textAlign: "center" }}>
+//                 <h3 style={{ color: "#005555", margin: "5px 0" }}>$1,291,000</h3>
+//                 <p style={{ margin: "5px 0", fontSize: "14px" }}>5232 California Fake, Ave. 21BC</p>
+//                 <p style={{ fontWeight: "bold", margin: "5px 0" }}>California, USA</p>
+//                 <p style={{ fontSize: "14px", margin: "5px 0" }}>🏠 2 beds 🛁 2 baths</p>
+//                 <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>See details</button>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//         <button onClick={nextSlide} style={{ position: "absolute", right: 0, background: "none", border: "none", cursor: "pointer" }}>
+//           <FaChevronRight size={30} color="#005555" />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
 
 export const LandingPage = () => {
@@ -27,7 +152,17 @@ export const LandingPage = () => {
 
     return () => clearInterval(interval);
   }, []);
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 1 < testimonials.length ? prevIndex + 1 : 0
+    );
+  };
 
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 1 >= 0 ? prevIndex - 1 : testimonials.length - 1
+    );
+  };
   const containerStyle = {
     position: "relative", // Ensures overlay and content are positioned correctly
     width: "100vw",
@@ -150,7 +285,15 @@ export const LandingPage = () => {
     padding: "8px 15px",
     transition: "background 0.3s",
   };
+
+  
+
+  
+      
+ 
+    
   return (
+    <div>
     <div style={containerStyle}>
       {/* Navbar */}
       <div style={backgroundStyle}></div>
@@ -192,7 +335,127 @@ export const LandingPage = () => {
         <input type="text" placeholder="Your ZIP code or City. e.g. New York" style={inputStyle} />
         <button style={buttonStyle}>Search</button>
       </div>
-      
+      </div>
+      {/* <div style={{ textAlign: "center", padding: "60px 20px" }}>
+        <h2 style={{ color: "black" }}>Popular Properties</h2>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
+          {[property1, property2, property3].map((property, index) => (
+            <div key={index} style={{ width: "300px", background: "#fff", borderRadius: "10px", overflow: "hidden", textAlign: "left" }}>
+              <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+              <div style={{ padding: "15px" }}>
+                <h3 style={{ color: "#005555" }}>$1,291,000</h3>
+                <p>5232 California Fake, Ave. 21BC</p>
+                <p><strong>California, USA</strong></p>
+                <p>🏠 2 beds 🛁 2 baths</p>
+                <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>See details</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div> */}
+       <div style={{ height: "50px" }}></div>
+
+{/* ✅ Use `PropertySlider` inside `LandingPage` */}
+<PropertySlider />
+<section
+  className="features-1"
+  style={{
+    backgroundColor: "#f8f9fa",
+    padding: "60px 20px",
+    textAlign: "center",
+  }}
+>
+  <div
+    className="container"
+    style={{
+      maxWidth: "1200px",
+      margin: "0 auto",
+    }}
+  >
+    <div
+      className="row"
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: "20px",
+      }}
+    >
+      {[
+        { icon: "flaticon-house", title: "Our Properties" },
+        { icon: "flaticon-building", title: "Property for Sale" },
+        { icon: "flaticon-house-3", title: "Real Estate Agent" },
+        { icon: "flaticon-house-1", title: "House for Sale" },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="col-6 col-lg-3 aos-init aos-animate"
+          data-aos="fade-up"
+          data-aos-delay={300 + index * 100}
+          style={{
+            backgroundColor: "#fff",
+            padding: "30px",
+            borderRadius: "12px",
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            flex: "1",
+            minWidth: "250px",
+            textAlign: "center",
+          }}
+        >
+          <span
+            className={item.icon}
+            style={{
+              fontSize: "50px",
+              color: "#005555",
+              display: "block",
+              marginBottom: "15px",
+            }}
+          />
+          <h3
+            className="mb-3"
+            style={{
+              fontSize: "20px",
+              fontWeight: "600",
+              color: "#002b2b",
+            }}
+          >
+            {item.title}
+          </h3>
+          <p
+            style={{
+              color: "#6c757d",
+              fontSize: "14px",
+              lineHeight: "1.6",
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Voluptates, accusamus.
+          </p>
+          <p>
+            <a
+              href="#"
+              className="learn-more"
+              style={{
+                color: "#005555",
+                textDecoration: "none",
+                fontWeight: "600",
+                display: "inline-block",
+                marginTop: "10px",
+                borderBottom: "2px solid #005555",
+                paddingBottom: "2px",
+              }}
+            >
+              Learn More
+            </a>
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+ 
+  
+
     </div>
     
   );

@@ -17,7 +17,7 @@ export const Login = () => {
   const submitHandler = async (data) => {
     console.log(data);
     data.roleId = "67c4b09c8385fb8187120578"
-    const res = await axios.post("/user/login", data);
+    const res = await axios.post("/api/user/login", data);
     console.log(res.data.user._id); //axios
     console.log(res.data); //api response
     if(res.status === 200){

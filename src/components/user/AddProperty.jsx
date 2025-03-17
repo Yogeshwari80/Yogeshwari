@@ -18,7 +18,7 @@ const [areas, setAreas] = useState([]);
 
   const getAllStates = async () => {
     try {
-      const response = await axios.get("/getStates");
+      const response = await axios.get("/api/getStates");
       console.log("States fetched:", response.data);
       setStates(response.data);
     } catch (error) {
@@ -29,7 +29,7 @@ const [areas, setAreas] = useState([]);
   const getCitiesByState = async (stateId) => {
     
     try {
-      const response = await axios.get(`/city/${stateId}`);
+      const response = await axios.get(`/api/city/${stateId}`);
       console.log("Cities fetched for state:", stateId, response.data);
       setCities(response.data);
       setAreas([]); 
@@ -41,7 +41,7 @@ const [areas, setAreas] = useState([]);
   const getAreasByCity = async (cityId) => {
 
     try {
-      const response = await axios.get(`/area/${cityId}`);
+      const response = await axios.get(`/api/area/${cityId}`);
       console.log("Areas fetched for city:", cityId, response.data);
       setAreas(response.data);
     } catch (error) {
