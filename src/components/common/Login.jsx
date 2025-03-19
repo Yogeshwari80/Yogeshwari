@@ -17,24 +17,19 @@ export const Login = () => {
   const submitHandler = async (data) => {
     console.log(data);
     data.roleId = "67c4b09c8385fb8187120578"
-    const res = await axios.post("/api/user/login", data);
+    const res = await axios.post("http://localhost:8000/api/user/login", data);
     console.log(res.data.user._id); //axios
     console.log(res.data); //api response
     if(res.status === 200){
         localStorage.setItem("id",res.data.user._id)
-        localStorage.setItem("role",res.data.user.role.name)
+        // localStorage.setItem("role",res.data.user.role.name)
     console.log(res);
-    // if (res.status == 200) {
-    //   console.log(res.data.data._id );
-    //   console.log(res.data.data.roleId.name);
-      
-      
-      // localStorage.setItem("id", res.data.data._id )
-      // localStorage.setItem("role", res.data.data.roleId.name)
+
       navigate("/user")
       alert("Login success");
     
-      if (res.data.user.role.name == "user") {
+      // if (res.data.user.role.name == "user") {
+        if (res.data.user.role._id == "user") {
         toast.success('Login Successfully', {
           position: "top-left",
           autoClose: 3000,
@@ -55,6 +50,7 @@ export const Login = () => {
     
   };
 
+    
   const validationSchema = {
     emailValidator: {
       required: {
@@ -134,7 +130,7 @@ export const Login = () => {
             left: 0,
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(52, 152, 219, 0.7))'
+            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 85, 85, 0.7))'
           }}></div>
           
           {/* Logo */}
@@ -143,7 +139,7 @@ export const Login = () => {
             <div style={{
               fontSize: '18px',
               fontWeight: '700',
-              color: '#3498db',
+              color: '#005555',
             }}>
               RE<span style={{ color: '#3498db' }}>F</span>
             </div>
@@ -166,7 +162,7 @@ export const Login = () => {
                     transition={Bounce}
                     />
         
-          <h2 style={{ color: '#3498db', textAlign: 'center', marginBottom: '30px', fontSize: '22px', fontWeight: '600'
+          <h2 style={{ color: '#005555', textAlign: 'center', marginBottom: '30px', fontSize: '22px', fontWeight: '600'
           }}>
             Good to See You Again!
           </h2>
@@ -180,7 +176,7 @@ export const Login = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                style={{ width: '100%', padding: '12px 15px', border: '1px solid #e1e5e8', borderRadius: '6px', backgroundColor: '#f7f9fa', color: '#34495e', fontSize: '15px', outline: 'none', transition: 'all 0.3s'
+                style={{ width: '100%', padding: '12px 15px', border: '1px solid #e1e5e8', borderRadius: '6px', backgroundColor: '#f7f9fa', color: '#005555', fontSize: '15px', outline: 'none', transition: 'all 0.3s'
                 }}
                 {...register("email", validationSchema.emailValidator)}
               />
@@ -208,7 +204,7 @@ export const Login = () => {
   
             <div style={{ textAlign: 'right', marginBottom: '20px' }}>
               <Link to="/forgot-password" style={{
-                color:'#3498db',
+                color:'#005555',
                 textDecoration: 'none',
                 fontSize: '14px'
               }}>
@@ -223,7 +219,7 @@ export const Login = () => {
                 padding: '12px',
                 border: 'none',
                 borderRadius: '6px',
-                backgroundColor: '#3498db',
+                backgroundColor: '#005555',
                 color: 'white',
                 fontSize: '16px',
                 fontWeight: '600',
@@ -244,7 +240,7 @@ export const Login = () => {
           }}>
             <p>Don't have an account?{' '}
               <Link to="/signup" style={{
-                color: '#3498db',
+                color: '#005555',
                 textDecoration: 'none',
                 fontWeight: '600'
               }}>

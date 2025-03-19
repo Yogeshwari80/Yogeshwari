@@ -206,7 +206,7 @@ export const Signup = () => {
             left: 0,
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(52, 152, 219, 0.7))'
+            background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 85, 85, 0.7))'
           }}></div>
           
           {/* Logo */}
@@ -250,7 +250,7 @@ export const Signup = () => {
           transition={Bounce}
           />
           <h2 style={{
-            color: '#34495e',
+            color: '#005555',
             textAlign: 'center',
             marginBottom: '25px',
             fontSize: '22px',
@@ -435,7 +435,7 @@ export const Signup = () => {
                 padding: '12px',
                 border: 'none',
                 borderRadius: '6px',
-                backgroundColor: '#3498db',
+                backgroundColor: '#005555',
                 color: 'white',
                 fontSize: '16px',
                 fontWeight: '600',
@@ -456,7 +456,7 @@ export const Signup = () => {
           }}>
             <p>Already have an account?{' '}
               <Link to="/login" style={{
-                color: '#3498db',
+                color: '#005555',
                 textDecoration: 'none',
                 fontWeight: '600'
               }}>

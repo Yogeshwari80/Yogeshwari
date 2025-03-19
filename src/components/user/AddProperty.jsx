@@ -50,9 +50,43 @@ const [areas, setAreas] = useState([]);
   };
   
 
-  const submitHandler = (data) => {
+
+
+
+  const submitHandler = async (data) => {
+    const userId = localStorage.getItem("id")
     console.log(data);
-  };
+    data.userId = userId
+    console.log(data.propertyImage[0]);
+
+    
+    
+    const formData = new FormData();
+    formData.append("propertyName",data.propertyName)
+    formData.append("categoryId",data.categoryId)
+    formData.append("basePrice",data.basePrice)
+    formData.append("address",data.address)
+    formData.append("stateId",data.stateId)
+    formData.append("cityId",data.cityId)
+    formData.append("areaId",data.areaId)
+    formData.append("nearbyLandmark",data.nearbyLandmark)
+    formData.append("googleMapLink",data.googleMapLink)
+    formData.append("userId",data.userId)
+    formData.append("builtUpArea",data.builtUpArea)
+    formData.append("carpetArea",data.carpetArea)
+    formData.append("bedrooms",data.bedrooms)
+    formData.append("balconies",data.balconies)
+    formData.append("furnishingStatus",data.furnishingStatus)
+    formData.append("propertyAge",data.propertyAge)
+    formData.append("facingDirection",data.facingDirection)
+    formData.append("parkingSlot",data.parkingSlot)
+    formData.append("propertyImage",data.propertyImage[0])
+    console.log(formData);
+    
+    const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
+    console.log(res.data);
+    
+  }
 
     return (
         <div className="card card-primary card-outline mb-4">
@@ -158,11 +192,11 @@ const [areas, setAreas] = useState([]);
               </div>
               <div className="mb-3">
                 <label htmlFor="landmarks" className="form-label">Nearby Landmarks</label>
-                <input type="text" className="form-control" id="landmarks" placeholder="E.g., school, hospital" />
+                <input type="text" className="form-control" id="landmarks" placeholder="E.g., school, hospital" {...register("landmarks")} />
               </div>
               <div className="mb-3">
                 <label htmlFor="mapsLink" className="form-label">Google Maps Link</label>
-                <input type="url" className="form-control" id="mapsLink" placeholder="https://maps.google.com/..." />
+                <input type="url" className="form-control" id="mapsLink"  placeholder="https://maps.google.com/..." {...register("mapsLink")}/>
               </div>
       
           
@@ -170,30 +204,30 @@ const [areas, setAreas] = useState([]);
               <div className="row mb-3">
                 <div className="col">
                   <label htmlFor="builtUpArea" className="form-label">Built-up Area</label>
-                  <input type="number" className="form-control" id="builtUpArea" placeholder="Enter built-up area" />
+                  <input type="number" className="form-control" id="builtUpArea"placeholder="Enter built-up area" {...register("builtUpArea")}  />
                 </div>
                 <div className="col">
                   <label htmlFor="carpetArea" className="form-label">Carpet Area</label>
-                  <input type="number" className="form-control" id="carpetArea" placeholder="Enter carpet area" />
+                  <input type="number" className="form-control" id="carpetArea"  placeholder="Enter carpet area" {...register("carpetArea")}  />
                 </div>
               </div>
               <div className="row mb-3">
                 <div className="col">
                   <label htmlFor="bedrooms" className="form-label">Bedrooms</label>
-                  <input type="number" className="form-control" id="bedrooms" placeholder="No. of bedrooms" />
+                  <input type="number" className="form-control" id="bedrooms" placeholder="No. of bedrooms" {...register("bedrooms")}  />
                 </div>
                 <div className="col">
                   <label htmlFor="bathrooms" className="form-label">Bathrooms</label>
-                  <input type="number" className="form-control" id="bathrooms" placeholder="No. of bathrooms" />
+                  <input type="number" className="form-control" id="bathrooms" placeholder="No. of bathrooms" {...register("bathrooms")} />
                 </div>
                 <div className="col">
                   <label htmlFor="balconies" className="form-label">Balconies</label>
-                  <input type="number" className="form-control" id="balconies" placeholder="No. of balconies" />
+                  <input type="number" className="form-control" id="balconies"placeholder="No. of balconies" {...register("balconies")} />
                 </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="furnishing" className="form-label">Furnishing Status</label>
-                <select className="form-select" id="furnishing">
+                <select className="form-select" id="furnishing" {...register("furnishing")}>
                   <option value="">Select Status</option>
                   <option value="fully">Fully Furnished</option>
                   <option value="semi">Semi-Furnished</option>
@@ -203,20 +237,20 @@ const [areas, setAreas] = useState([]);
               <div className="row mb-3">
                 <div className="col">
                   <label htmlFor="age" className="form-label">Age of Property (Years)</label>
-                  <input type="number" className="form-control" id="age" placeholder="Years" />
+                  <input type="number" className="form-control" id="age" placeholder="Years" {...register("age")} />
                 </div>
                 <div className="col">
                   <label htmlFor="floorNo" className="form-label">Floor Number</label>
-                  <input type="number" className="form-control" id="floorNo" placeholder="Floor number" />
+                  <input type="number" className="form-control" id="floorNo" placeholder="Floor number" {...register("floorNo")} />
                 </div>
                 <div className="col">
                   <label htmlFor="totalFloors" className="form-label">Total Floors</label>
-                  <input type="number" className="form-control" id="totalFloors" placeholder="Total floors in building" />
+                  <input type="number" className="form-control" id="totalFloors" placeholder="Total floors in building" {...register("totalFloors")} />
                 </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="facing" className="form-label">Facing Direction</label>
-                <select className="form-select" id="facing">
+                <select className="form-select" id="facing" {...register("facing")}>
                   <option value="">Select Direction</option>
                   <option value="north">North</option>
                   <option value="south">South</option>
@@ -226,50 +260,55 @@ const [areas, setAreas] = useState([]);
               </div>
               <div className="mb-3">
                 <label htmlFor="parking" className="form-label">Parking Availability (Slots)</label>
-                <input type="number" className="form-control" id="parking" placeholder="Number of parking slots" />
+                <input type="number" className="form-control" id="parking" placeholder="Number of parking slots" {...register("parking")}  />
               </div>
       
  
               <h5 className="mb-3">Amenities & Features</h5>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="lift" />
+                <input className="form-check-input" type="checkbox" id="lift"{...register("amenities.lift")} />
                 <label className="form-check-label" htmlFor="lift">Lift/Elevator</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="swimmingPool" />
+                <input className="form-check-input" type="checkbox" id="swimmingPool" {...register("amenities.swimmingPool")}/>
                 <label className="form-check-label" htmlFor="swimmingPool">Swimming Pool</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="gym" />
+                <input className="form-check-input" type="checkbox" id="gym" {...register("amenities.gym")}/>
                 <label className="form-check-label" htmlFor="gym">Gym</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="garden" />
+                <input className="form-check-input" type="checkbox" id="garden" {...register("amenities.garden")} />
                 <label className="form-check-label" htmlFor="garden">Garden/Park</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="security" />
+                <input className="form-check-input" type="checkbox" id="security" {...register("amenities.security")}/>
                 <label className="form-check-label" htmlFor="security">Security Guard</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="cctv" />
+                <input className="form-check-input" type="checkbox" id="cctv"{...register("amenities.cctv")} />
                 <label className="form-check-label" htmlFor="cctv">CCTV Surveillance</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="powerBackup" />
+                <input className="form-check-input" type="checkbox" id="powerBackup"{...register("amenities.powerBackup")} />
                 <label className="form-check-label" htmlFor="powerBackup">Power Backup</label>
               </div>
               <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="clubhouse" />
+                <input className="form-check-input" type="checkbox" id="clubhouse"{...register("amenities.clubhouse")} />
                 <label className="form-check-label" htmlFor="clubhouse">Clubhouse/Community Hall</label>
               </div>
       
-      
-              <h5 className="mb-3">Property Media & Documents</h5>
+      {/* Property Media & Documents */}
+      <h5 className="mb-3">Property Media & Documents</h5>
+              <div className="mb-3">
+                <label htmlFor="propertyImages" className="form-label">Upload Property Images</label>
+                <input type="file" className="form-control" id="propertyImages" multiple {...register("propertyImage")} />
+              </div>
+              {/* <h5 className="mb-3">Property Media & Documents</h5>
               <div className="mb-3">
                 <label htmlFor="propertyImages" className="form-label">Upload Property Images</label>
                 <input type="file" className="form-control" id="propertyImages" multiple />
-              </div>
+              </div> */}
               {/* <div className="mb-3"> */}
                 {/* <label htmlFor="videoTour" className="form-label">Upload Video Tour (Optional)</label>
                 <input type="file" className="form-control" id="videoTour" />
