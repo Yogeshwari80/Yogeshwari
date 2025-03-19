@@ -83,10 +83,22 @@ const [areas, setAreas] = useState([]);
     formData.append("propertyImage",data.propertyImage[0])
     console.log(formData);
     
-    const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
+    const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData,{
+      headers:{
+        "Content-Type":"multipart/form-data",
+      },
+    })
     console.log(res.data);
     
   }
+
+//   const res = await axios.post("/create_product_file",formData,{
+//     headers: {
+//         "Content-Type": "multipart/form-data",
+//     },
+// })
+// console.log(res.data)//axios variable....
+
 
     return (
         <div className="card card-primary card-outline mb-4">
@@ -116,7 +128,7 @@ const [areas, setAreas] = useState([]);
               </div>
               <div className="mb-3">
                 <label htmlFor="listingType" className="form-label">Listing Type</label>
-                <select className="form-select" id="listingType">
+                <select className="form-select" id="listingType"{...register("listingType", { required: true })}>
                   <option value="">Select Listing Type</option>
                   <option value="sale">For Sale</option>
                   <option value="rent">For Rent</option>
@@ -130,7 +142,7 @@ const [areas, setAreas] = useState([]);
                 </div>
                 <div className="col">
                   <label htmlFor="negotiable" className="form-label">Negotiable</label>
-                  <select className="form-select" id="negotiable">
+                  <select className="form-select" id="negotiable"{...register("negotiable", { required: true })}>
                     <option value="">Select</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -304,100 +316,7 @@ const [areas, setAreas] = useState([]);
                 <label htmlFor="propertyImages" className="form-label">Upload Property Images</label>
                 <input type="file" className="form-control" id="propertyImages" multiple {...register("propertyImage")} />
               </div>
-              {/* <h5 className="mb-3">Property Media & Documents</h5>
-              <div className="mb-3">
-                <label htmlFor="propertyImages" className="form-label">Upload Property Images</label>
-                <input type="file" className="form-control" id="propertyImages" multiple />
-              </div> */}
-              {/* <div className="mb-3"> */}
-                {/* <label htmlFor="videoTour" className="form-label">Upload Video Tour (Optional)</label>
-                <input type="file" className="form-control" id="videoTour" />
-              </div>
-              <div className="mb-3">
-                <label  className="form-label">Virtual Tour Link</label>
-                <input type="url" className="form-control"  placeholder="https://..." />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="ownership" className="form-label">Ownership Type</label>
-                <select className="form-select" id="ownership">
-                  <option value="">Select Ownership Type</option>
-                  <option value="freehold">Freehold</option>
-                  <option value="leasehold">Leasehold</option>
-                  <option value="coop">Co-op</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="legalDocs" className="form-label">Legal Approvals & Documents</label>
-                <input type="file" className="form-control" id="legalDocs" multiple />
-              </div>
-      
-              
-              <h5 className="mb-3">Owner/Agent Details</h5>
-              <div className="mb-3">
-                <label htmlFor="ownerName" className="form-label">Owner Name</label>
-                <input type="text" className="form-control" id="ownerName" placeholder="Enter owner name" />
-              </div>
-              <div className="row mb-3">
-                <div className="col">
-                  <label htmlFor="ownerEmail" className="form-label">Email ID</label>
-                  <input type="email" className="form-control" id="ownerEmail" placeholder="Enter email" />
-                </div>
-                <div className="col">
-                  <label htmlFor="ownerContact" className="form-label">Contact Number</label>
-                  <input type="tel" className="form-control" id="ownerContact" placeholder="Enter contact number" />
-                </div>
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Are You an Agent?</label>
-                <div>
-                  <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="isAgent" id="agentYes" value="yes" />
-                    <label className="form-check-label" htmlFor="agentYes">Yes</label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input className="form-check-input" type="radio" name="isAgent" id="agentNo" value="no" />
-                    <label className="form-check-label" htmlFor="agentNo">No</label>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="agencyName" className="form-label">Agency Name (if applicable)</label>
-                <input type="text" className="form-control" id="agencyName" placeholder="Enter agency name" />
-              </div>
-      
-           
-              <h5 className="mb-3">Additional Information</h5>
-              <div className="mb-3">
-                <label htmlFor="description" className="form-label">Description</label>
-                <textarea className="form-control" id="description" rows="3" placeholder="Enter property description"></textarea>
-              </div>
-              <div className="row mb-3">
-                <div className="col">
-                  <label htmlFor="availableFrom" className="form-label">Available From</label>
-                  <input type="date" className="form-control" id="availableFrom" />
-                </div>
-                <div className="col">
-                  <label htmlFor="preferredTenants" className="form-label">Preferred Tenants</label>
-                  <select className="form-select" id="preferredTenants">
-                    <option value="">Select</option>
-                    <option value="family">Family</option>
-                    <option value="bachelor">Bachelor</option>
-                    <option value="anyone">Anyone</option>
-                  </select>
-                </div>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="petsAllowed" className="form-label">Pets Allowed?</label>
-                <select className="form-select" id="petsAllowed">
-                  <option value="">Select</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="maintenanceCharges" className="form-label">Maintenance Charges</label>
-                <input type="number" className="form-control" id="maintenanceCharges" placeholder="Enter maintenance charges if any" />
-              </div> */}
+
             </div>
             {/* Footer */}
             <div className="card-footer">

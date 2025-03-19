@@ -23,6 +23,12 @@ import "slick-carousel/slick/slick-theme.css";
 import img1 from "../../assets/images/user1.jpg";
 import img2 from "../../assets/images/user2.jpg";
 import img3 from "../../assets/images/user3.jpg";
+import profile1 from "../../assets/images/person1.jpg";
+import profile2 from "../../assets/images/person2.jpg";
+import profile3 from "../../assets/images/person3.jpg";
+import heroImage from "../../assets/images/bg2.jpg"; // Path ko apne folder ke hisaab se adjust karein
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 
 
@@ -61,6 +67,7 @@ const PropertySlider = () => {
       prevIndex - visibleProperties >= 0 ? prevIndex - visibleProperties : properties.length - visibleProperties
     );
   };
+  
 
   return (
     <div style={{ textAlign: "center", padding: "40px 0", position: "relative", maxWidth: "1200px", margin: "0 auto" }}>
@@ -287,7 +294,125 @@ export const LandingPage = () => {
     },
    
   ];
-  
+  const agents = [
+    {
+      name: "James Doe",
+      role: "Real Estate Agent",
+      img: profile1,
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere officiis inventore cumque tenetur laboriosam, minus culpa doloremque odio, neque molestias?",
+    },
+    {
+      name: "Jean Smith",
+      role: "Real Estate Agent",
+      img: profile2,
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere officiis inventore cumque tenetur laboriosam, minus culpa doloremque odio, neque molestias?",
+    },
+    {
+      name: "Alicia Huston",
+      role: "Real Estate Agent",
+      img: profile3,
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere officiis inventore cumque tenetur laboriosam, minus culpa doloremque odio, neque molestias?",
+    },
+  ];
+  const styles = {
+    section: {
+      backgroundColor: "#f8f9fa",
+      padding: "60px 0",
+      textAlign: "center",
+    },
+    container: {
+      maxWidth: "1100px",
+      margin: "0 auto",
+    },
+    header: {
+      marginBottom: "40px",
+    },
+    title: {
+      fontSize: "2rem",
+      color: "#0a2540",
+      marginBottom: "10px",
+    },
+    subtitle: {
+      color: "#6c757d",
+      fontSize: "16px",
+      maxWidth: "600px",
+      margin: "0 auto",
+    },
+    agents: {
+      display: "flex",
+      justifyContent: "center",
+      gap: "30px",
+      flexWrap: "wrap",
+    },
+    agentCard: {
+      background: "white",
+      padding: "20px",
+      borderRadius: "10px",
+      boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)",
+      maxWidth: "320px",
+      textAlign: "center",
+      transition: "transform 0.3s ease-in-out",
+    },
+    agentCardHover: {
+      transform: "translateY(-5px)",
+    },
+    agentImg: {
+      width: "100px",
+      height: "100px",
+      borderRadius: "50%",
+      overflow: "hidden",
+      margin: "-50px auto 10px",
+      border: "5px solid white",
+      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+    },
+    img: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    },
+    agentName: {
+      fontSize: "18px",
+      margin: "10px 0 5px",
+      fontWeight: "bold",
+      color: "#0a2540",
+    },
+    agentRole: {
+      display: "block",
+      color: "#6c757d",
+      fontSize: "14px",
+      marginBottom: "10px",
+    },
+    agentDescription: {
+      fontSize: "14px",
+      color: "#6c757d",
+      marginBottom: "15px",
+    },
+    socialIcons: {
+      display: "flex",
+      justifyContent: "center",
+      gap: "10px",
+    },
+    socialLink: {
+      background: "#0a2540",
+      color: "white",
+      width: "35px",
+      height: "35px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: "50%",
+      fontSize: "16px",
+      transition: "background 0.3s",
+      textDecoration: "none",
+    },
+    socialLinkHover: {
+      background: "#0a5d5e",
+    },
+  };
+
   const TestimonialSlider = () => {
     const settings = {
       dots: true,
@@ -331,6 +456,44 @@ export const LandingPage = () => {
     ],
   };
   
+  // const Footer = () => {
+  //   const footerStyle = {
+  //     backgroundColor: "#f8f9fa",
+  //     padding: "40px 0",
+  //     fontSize: "14px",
+  //     color: "#333",
+  //     textAlign: "left",
+  //   };
+  
+  //   const widgetStyle = {
+  //     marginBottom: "20px",
+  //   };
+  
+  //   const linkStyle = {
+  //     color: "#333",
+  //     textDecoration: "none",
+  //     display: "block",
+  //     marginBottom: "8px",
+  //   };
+  
+  //   const socialIconStyle = {
+  //     display: "inline-block",
+  //     width: "40px",
+  //     height: "40px",
+  //     lineHeight: "40px",
+  //     textAlign: "center",
+  //     backgroundColor: "#d3d3d3",
+  //     borderRadius: "50%",
+  //     margin: "0 5px",
+  //     fontSize: "18px",
+  //     color: "#333",
+  //   };
+  
+  //   const textCenter = {
+  //     textAlign: "center",
+  //     marginTop: "30px",
+  //   };
+  // };
     
   return (
     <div>
@@ -534,6 +697,331 @@ export const LandingPage = () => {
         ))}
       </Slider>
     </div>
+    <div
+  className="section section-4"
+  style={{ backgroundColor: "#f8f9fa", padding: "80px 0" }}
+>
+  <div className="container">
+    <div
+      className="row justify-content-center text-center mb-5"
+      style={{ marginBottom: "50px" }}
+    >
+      <div className="col-lg-5">
+        <h2
+          className="font-weight-bold heading text-primary mb-4"
+          style={{
+            fontSize: "32px",
+            fontWeight: "bold",
+            color: "#005555",
+            textAlign: "center",
+          }}
+        >
+          Let's find home that's perfect for you
+        </h2>
+        <p
+          className="text-black-50"
+          style={{ color: "#6c757d", textAlign: "center" }}
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam enim
+          pariatur similique debitis vel nisi qui reprehenderit.
+        </p>
+      </div>
+    </div>
+    <div className="row justify-content-between mb-5">
+      <div
+        className="col-lg-7 mb-5 mb-lg-0 order-lg-2"
+        style={{ textAlign: "center" }}
+      >
+        <div className="img-about dots">
+          {/* <img
+            src="images/hero_bg_3.jpg"
+            alt="Image"
+            className="img-fluid"
+            style={{
+              width: "100%",
+              borderRadius: "10px",
+              boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)",
+            }}
+          /> */}
+          <img
+  src={heroImage}
+  alt="Luxury House"
+  className="img-fluid"
+  style={{
+    width: "100%",
+    borderRadius: "10px",
+    boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)",
+  }}
+/>
+
+        </div>
+      </div>
+      <div className="col-lg-4">
+        {[
+          { icon: "🏠", title: "2M Properties" },
+          { icon: "👤", title: "Top Rated Agents" },
+          { icon: "🛡", title: "Legit Properties" },
+        ].map((item, index) => (
+          <div
+            key={index}
+            className="d-flex feature-h"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "30px",
+              padding:"20px",
+            }}
+          >
+            <span
+              className="wrap-icon me-3"
+              style={{
+                width: "60px",
+                height: "60px",
+                background: "#e9ecef",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                fontSize: "24px",
+              }}
+            >
+              {item.icon}
+            </span>
+            <div className="feature-text" style={{ flex: 1 }}>
+              <h3
+                className="heading"
+                style={{ fontSize: "20px", fontWeight: "bold" }}
+              >
+                {item.title}
+              </h3>
+              <p className="text-black-50" style={{ color: "#6c757d" }}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                iste.
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div className="row section-counter mt-5 viewed">
+      {[
+        { count: "3,298", text: "# of Buy Properties" },
+        { count: "2,181", text: "# of Sell Properties" },
+        { count: "9,316", text: "# of All Properties" },
+        { count: "7,191", text: "# of Agents" },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="col-6 col-sm-6 col-md-6 col-lg-3"
+          style={{ textAlign: "center", padding: "20px" }}
+        >
+          <div className="counter-wrap mb-5 mb-lg-0">
+            <span
+              className="number"
+              style={{ fontSize: "30px", fontWeight: "bold", color: "#005555" }}
+            >
+              {item.count}
+            </span>
+            <span
+              className="caption"
+              style={{
+                display: "block",
+                marginTop: "5px",
+                fontSize: "16px",
+                color: "#6c757d",
+              }}
+            >
+              {item.text}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>;
+{/* <div style={{ backgroundColor: "#f8f9fa", padding: "60px 0" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h2 style={{ color: "#0a2540", marginBottom: "20px" }}>
+          Be a part of our growing real estate agents
+        </h2>
+        <a
+          href="#"
+          style={{
+            backgroundColor: "#0a5d5e",
+            color: "white",
+            padding: "12px 24px",
+            fontSize: "16px",
+            borderRadius: "30px",
+            textDecoration: "none",
+            fontWeight: "bold",
+            display: "inline-block",
+          }}
+        >
+          Apply for Real Estate agent */}
+        {/* </a>
+      </div>
+    </div>   */}
+<div style={{ backgroundColor: "#f8f9fa", padding: "60px 0" }}>
+  <div
+    style={{
+      backgroundColor: "#ffffff",
+      padding: "40px",
+      borderRadius: "10px",
+      boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)", // Shadow for floating effect
+      textAlign: "center",
+      maxWidth: "800px",
+      margin: "0 auto",
+    }}
+  >
+    <h2 style={{ color: "#0a2540", marginBottom: "20px" }}>
+      Be a part of our growing real estate agents
+    </h2>
+    <a
+      href="#"
+      style={{
+        backgroundColor: "#0a5d5e",
+        color: "white",
+        padding: "12px 24px",
+        fontSize: "16px",
+        borderRadius: "30px",
+        textDecoration: "none",
+        fontWeight: "bold",
+        display: "inline-block",
+        boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", // Button shadow added
+        transition: "all 0.3s ease-in-out",
+      }}
+      onMouseOver={(e) =>
+        (e.target.style.boxShadow = "0px 8px 20px rgba(0, 0, 0, 0.3)")
+      }
+      onMouseOut={(e) =>
+        (e.target.style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.2)")
+      }
+    >
+      Apply for Real Estate agent
+    </a>
+  </div>
+</div>
+<div style={styles.section}>
+      <div style={styles.container}>
+        <div style={styles.header}>
+          <h2 style={styles.title}>Our Agents</h2>
+          <p style={styles.subtitle}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+            enim pariatur similique debitis vel nisi qui reprehenderit totam?
+            Quod maiores.
+          </p>
+        </div>
+        <div style={styles.agents}>
+          {agents.map((agent, index) => (
+            <div style={styles.agentCard} key={index}>
+              <div style={styles.agentImg}>
+                <img src={agent.img} alt={agent.name} style={styles.img} />
+              </div>
+              <h3 style={styles.agentName}>{agent.name}</h3>
+              <span style={styles.agentRole}>{agent.role}</span>
+              <p style={styles.agentDescription}>{agent.description}</p>
+              <div style={styles.socialIcons}>
+                <a href="#" style={styles.socialLink}>
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#" style={styles.socialLink}>
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" style={styles.socialLink}>
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" style={styles.socialLink}>
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    {/* <div style={footerStyle}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 15px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          {/* Contact Section */}
+          {/* <div style={{ flex: "1", paddingRight: "20px" }}>
+            <div style={widgetStyle}>
+              <h3 style={{ fontWeight: "bold" }}>Contact</h3>
+              <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+              <a href="tel://11234567890" style={linkStyle}>
+                +1(123)-456-7890
+              </a>
+              <a href="tel://11234567890" style={linkStyle}>
+                +1(123)-456-7890
+              </a>
+              <a href="mailto:info@mydomain.com" style={linkStyle}>
+                info@mydomain.com
+              </a>
+            </div>
+          </div>
+
+          {/* Sources Section */}
+          {/* <div style={{ flex: "1", paddingRight: "20px" }}>
+            <div style={widgetStyle}>
+              <h3 style={{ fontWeight: "bold" }}>Sources</h3>
+              <div style={{ display: "flex" }}>
+                <ul style={{ listStyle: "none", padding: 0, marginRight: "30px" }}>
+                  <li><a href="#" style={linkStyle}>About us</a></li>
+                  <li><a href="#" style={linkStyle}>Services</a></li>
+                  <li><a href="#" style={linkStyle}>Vision</a></li>
+                  <li><a href="#" style={linkStyle}>Mission</a></li>
+                  <li><a href="#" style={linkStyle}>Terms</a></li>
+                  <li><a href="#" style={linkStyle}>Privacy</a></li>
+                </ul>
+                <ul style={{ listStyle: "none", padding: 0 }}>
+                  <li><a href="#" style={linkStyle}>Partners</a></li>
+                  <li><a href="#" style={linkStyle}>Business</a></li>
+                  <li><a href="#" style={linkStyle}>Careers</a></li>
+                  <li><a href="#" style={linkStyle}>Blog</a></li>
+                  <li><a href="#" style={linkStyle}>FAQ</a></li>
+                  <li><a href="#" style={linkStyle}>Creative</a></li>
+                </ul>
+              </div>
+            </div>
+          </div> */}
+
+          {/* Links & Social Icons Section */}
+          {/* <div style={{ flex: "1" }}>
+            <div style={widgetStyle}>
+              <h3 style={{ fontWeight: "bold" }}>Links</h3>
+              <a href="#" style={linkStyle}>Our Vision</a>
+              <a href="#" style={linkStyle}>About us</a>
+              <a href="#" style={linkStyle}>Contact us</a>
+            </div>
+            <div>
+              <a href="#" style={socialIconStyle}><i className="fab fa-instagram"></i></a>
+              <a href="#" style={socialIconStyle}><i className="fab fa-twitter"></i></a>
+              <a href="#" style={socialIconStyle}><i className="fab fa-facebook-f"></i></a>
+              <a href="#" style={socialIconStyle}><i className="fab fa-linkedin-in"></i></a>
+              <a href="#" style={socialIconStyle}><i className="fab fa-pinterest"></i></a>
+              <a href="#" style={socialIconStyle}><i className="fab fa-dribbble"></i></a>
+            </div>
+          </div>
+        </div> */}
+
+        {/* Copyright Section */}
+        {/* <div style={textCenter}>
+          <p>Copyright © 2025 . All Rights Reserved. — Designed with love by <a href="https://untree.co" style={linkStyle}>Untree.co</a></p>
+          <p>Distributed by <a href="https://themewagon.com/" target="_blank" style={linkStyle}>themewagon</a></p>
+        </div>
+      </div> 
+       <Footer /> */}
+     {/* </div> */}
+
+
+
 
     </div>
     
