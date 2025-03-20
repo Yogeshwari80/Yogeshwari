@@ -708,11 +708,11 @@ export const LandingPage = () => {
     >
       <div className="col-lg-5">
         <h2
-          className="font-weight-bold heading text-primary mb-4"
+          className="font-weight-bold heading  mb-4"
           style={{
-            fontSize: "32px",
+            fontSize: "30px",
             fontWeight: "bold",
-            color: "#005555",
+            color: "rgb(0, 85, 85)",
             textAlign: "center",
           }}
         >

@@ -53,51 +53,41 @@ const [areas, setAreas] = useState([]);
 
 
 
-  const submitHandler = async (data) => {
-    const userId = localStorage.getItem("id")
-    console.log(data);
-    data.userId = userId
-    console.log(data.propertyImage[0]);
 
-    
-    
-    const formData = new FormData();
-    formData.append("propertyName",data.propertyName)
-    formData.append("categoryId",data.categoryId)
-    formData.append("basePrice",data.basePrice)
-    formData.append("address",data.address)
-    formData.append("stateId",data.stateId)
-    formData.append("cityId",data.cityId)
-    formData.append("areaId",data.areaId)
-    formData.append("nearbyLandmark",data.nearbyLandmark)
-    formData.append("googleMapLink",data.googleMapLink)
-    formData.append("userId",data.userId)
-    formData.append("builtUpArea",data.builtUpArea)
-    formData.append("carpetArea",data.carpetArea)
-    formData.append("bedrooms",data.bedrooms)
-    formData.append("balconies",data.balconies)
-    formData.append("furnishingStatus",data.furnishingStatus)
-    formData.append("propertyAge",data.propertyAge)
-    formData.append("facingDirection",data.facingDirection)
-    formData.append("parkingSlot",data.parkingSlot)
-    formData.append("propertyImage",data.propertyImage[0])
-    console.log(formData);
-    
-    const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData,{
-      headers:{
-        "Content-Type":"multipart/form-data",
-      },
-    })
-    console.log(res.data);
-    
-  }
+const submitHandler = async (data) => {
+  const userId = localStorage.getItem("id")
+  console.log(data);
+  data.userId = userId
+  console.log(data.propertyImage[0]);
 
-//   const res = await axios.post("/create_product_file",formData,{
-//     headers: {
-//         "Content-Type": "multipart/form-data",
-//     },
-// })
-// console.log(res.data)//axios variable....
+  
+  
+  const formData = new FormData();
+  formData.append("propertyName",data.propertyName)
+  formData.append("categoryId",data.categoryId)
+  formData.append("basePrice",data.basePrice)
+  formData.append("address",data.address)
+  formData.append("stateId",data.stateId)
+  formData.append("cityId",data.cityId)
+  formData.append("areaId",data.areaId)
+  formData.append("nearbyLandmark",data.nearbyLandmark)
+  formData.append("googleMapLink",data.googleMapLink)
+  formData.append("userId",data.userId)
+  formData.append("builtUpArea",data.builtUpArea)
+  formData.append("carpetArea",data.carpetArea)
+  formData.append("bedrooms",data.bedrooms)
+  formData.append("balconies",data.balconies)
+  formData.append("furnishingStatus",data.furnishingStatus)
+  formData.append("propertyAge",data.propertyAge)
+  formData.append("facingDirection",data.facingDirection)
+  formData.append("parkingSlot",data.parkingSlot)
+  formData.append("propertyImage",data.propertyImage[0])
+  console.log(formData);
+  
+  const res = await axios.post("/api/create_property_with_file",formData)
+  console.log(res.data);
+  
+}
 
 
     return (
@@ -276,7 +266,7 @@ const [areas, setAreas] = useState([]);
               </div>
       
  
-              <h5 className="mb-3">Amenities & Features</h5>
+              {/* <h5 className="mb-3">Amenities & Features</h5>
               <div className="form-check mb-2">
                 <input className="form-check-input" type="checkbox" id="lift"{...register("amenities.lift")} />
                 <label className="form-check-label" htmlFor="lift">Lift/Elevator</label>
@@ -308,7 +298,7 @@ const [areas, setAreas] = useState([]);
               <div className="form-check mb-2">
                 <input className="form-check-input" type="checkbox" id="clubhouse"{...register("amenities.clubhouse")} />
                 <label className="form-check-label" htmlFor="clubhouse">Clubhouse/Community Hall</label>
-              </div>
+              </div> */}
       
       {/* Property Media & Documents */}
       <h5 className="mb-3">Property Media & Documents</h5>
@@ -316,6 +306,8 @@ const [areas, setAreas] = useState([]);
                 <label htmlFor="propertyImages" className="form-label">Upload Property Images</label>
                 <input type="file" className="form-control" id="propertyImages" multiple {...register("propertyImage")} />
               </div>
+             
+      
 
             </div>
             {/* Footer */}
