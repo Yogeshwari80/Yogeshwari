@@ -8,12 +8,15 @@ export const AddProperty = () => {
 const [states, setStates] = useState([]);
 const [cities, setCities] = useState([]);
 const [areas, setAreas] = useState([]);
+const [categories,setCategories] = useState([])
+
 
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     getAllStates();
   }, []);
+
 
 
   const getAllStates = async () => {
@@ -26,6 +29,28 @@ const [areas, setAreas] = useState([]);
     }
   };
   
+  // const getAllCategories = async () => {
+  //   try {
+  //     console.log("get all category");
+      
+  //     const fetchedCategories = await axios.get("/api/category/");
+  //     console.log(fetchedCategories.data.data);
+      
+  //     setCategories(fetchedCategories.data.data)
+  //   } catch (error) {
+  //     console.log(error);
+      
+  //   }
+  // }
+  // const getAllCategories = async () => {
+  //   try {
+  //     const response = await axios.get("/api/category/");
+  //     console.log("Categories fetched:", response.data);
+  //     setCategories(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching states:", error.response ? error.response.data : error.message);
+  //   }
+  // };
   const getCitiesByState = async (stateId) => {
     
     try {
@@ -49,7 +74,22 @@ const [areas, setAreas] = useState([]);
     }
   };
   
-
+  const getAllCategories = async () => {
+    try {
+      const response = await axios.get("/api/category"); // Ensure correct API route
+      console.log("Categories fetched:", response.data);
+      setCategories(response.data);
+    } catch (error) {
+      console.error(
+        "Error fetching categories:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+  
+  useEffect(() => {
+    getAllCategories(); // Fetch categories when component mounts
+  }, []);
 
 
 
@@ -60,15 +100,16 @@ const submitHandler = async (data) => {
   data.userId = userId
   console.log(data.propertyImage[0]);
 
-  
+
   
   const formData = new FormData();
-  formData.append("propertyName",data.propertyName)
-  formData.append("categoryId",data.categoryId)
-  formData.append("basePrice",data.basePrice)
+  formData.append("property_name",data.property_name)
+  formData.append("category_id",data.category_id)
+  formData.append("listing_type",data.listing_type)
+  formData.append("base_price",data.basePrice)
   formData.append("address",data.address)
-  formData.append("stateId",data.stateId)
-  formData.append("cityId",data.cityId)
+  formData.append("state_id",data.stateId)
+  formData.append("city_id",data.cityId)
   formData.append("areaId",data.areaId)
   formData.append("nearbyLandmark",data.nearbyLandmark)
   formData.append("googleMapLink",data.googleMapLink)
@@ -81,12 +122,13 @@ const submitHandler = async (data) => {
   formData.append("propertyAge",data.propertyAge)
   formData.append("facingDirection",data.facingDirection)
   formData.append("parkingSlot",data.parkingSlot)
-  formData.append("propertyImage",data.propertyImage[0])
+  formData.append("property_type",data.property_type)
+  formData.append("image",data.propertyImage[0])
   console.log(formData);
   
-  const res = await axios.post("/api/create_property_with_file",formData)
+  const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
   console.log(res.data);
-  
+
 }
 
 
@@ -103,11 +145,11 @@ const submitHandler = async (data) => {
               <h5 className="mb-3">Basic Property Information</h5>
               <div className="mb-3">
                 <label htmlFor="propertyTitle" className="form-label">Property Title</label>
-                <input type="text" {...register("propertyName")} className="form-control" id="propertyTitle" placeholder="Enter property title" />
+                <input type="text" {...register("property_name")} className="form-control" id="propertyTitle" placeholder="Enter property title" />
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <label htmlFor="propertyType" className="form-label">Property Type</label>
-                <select className="form-select" {...register("categoryId")} id="propertyType">
+                <select className="form-select" {...register("category_id")} id="propertyType">
                   <option value="">Select Type</option>
                   <option value="apartment">Apartment</option>
                   <option value="house">House</option>
@@ -115,10 +157,32 @@ const submitHandler = async (data) => {
                   <option value="commercial">Commercial</option>
                   <option value="plot">Plot</option>
                 </select>
-              </div>
+              </div> */}
+               {/* <div className="mb-3">
+                <label htmlFor="propertyType" className="form-label" >Property Type</label>
+                <select className="form-select"  id="propertyType" {...register("category_id")}>
+                  <option value="">Select Type</option>
+                  {
+                    categories?.map((category) => {
+                      return <option value={category._id}>{category.name}</option>
+                    })
+                  }
+                </select>
+              </div> */}
+              <div className="mb-3">
+    <label htmlFor="propertyType" className="form-label">Property Type</label>
+    <select className="form-select" id="propertyType" {...register("category_id")}>
+      <option value="">Select Type</option>
+      {categories.map((category) => (
+        <option key={category._id} value={category._id}>
+          {category.name}
+        </option>
+      ))}
+    </select>
+  </div>
               <div className="mb-3">
                 <label htmlFor="listingType" className="form-label">Listing Type</label>
-                <select className="form-select" id="listingType"{...register("listingType", { required: true })}>
+                <select className="form-select" id="listingType"{...register("listing_type", { required: true })}>
                   <option value="">Select Listing Type</option>
                   <option value="sale">For Sale</option>
                   <option value="rent">For Rent</option>
