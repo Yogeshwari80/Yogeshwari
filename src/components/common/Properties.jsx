@@ -3,82 +3,25 @@ import { Link, useNavigate } from "react-router-dom";
 import background1 from "../../assets/images/bg1.jpg";
 import background2 from "../../assets/images/bg2.jpg";
 import background3 from "../../assets/images/bg3.jpg";
+import property1 from "../../assets/images/property1.jpg";
+import property2 from "../../assets/images/property2.jpg";
+import property3 from "../../assets/images/property3.jpg";
+import property4 from "../../assets/images/property4.jpg";
+import property5 from "../../assets/images/property5.jpg";
+import property6 from "../../assets/images/property6.jpg";
+import property7 from "../../assets/images/property7.jpg";
+import property8 from "../../assets/images/property8.jpg";
+import { div } from 'framer-motion/client';
 
 
-// import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 
 
 
 
-const PropertySlider = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const navigate = useNavigate();
-  const visibleProperties = 3;
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex + visibleProperties < properties.length ? prevIndex + 1 : 0
-      );
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + visibleProperties < properties.length ? prevIndex + visibleProperties : 0
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex - visibleProperties >= 0 ? prevIndex - visibleProperties : properties.length - visibleProperties
-    );
-  };
   
 
-  return (
-    <div style={{ textAlign: "center", padding: "40px 0", position: "relative", maxWidth: "1200px", margin: "0 auto" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "50px" }}>
-      <h2 style={{ color: "black" }}>POPULAR PROPERTIES</h2>
-        <button 
-          onClick={() => navigate("/signup")}
-          style={{ padding: "10px 20px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-          View all properties
-        </button>
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-        <button onClick={prevSlide} style={{ position: "absolute", left: "-40px", background: "none", border: "none", cursor: "pointer" }}>
-          <FaChevronLeft size={30} color="#005555" />
-        </button>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px", overflow: "hidden", width: "100%" }}>
-          {properties.slice(currentIndex, currentIndex + visibleProperties).map((property, index) => (
-            <div key={index} style={{ width: "300px", position: "relative", textAlign: "left", background: "#fff", borderRadius: "10px", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ position: "relative", width: "100%" }}>
-                <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
-                <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.4)", display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, transition: "opacity 0.3s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = 0}>
-                 
-                </div>
-              </div>
-              <div style={{ padding: "15px", position: "relative", zIndex: 2, textAlign: "center" }}>
-                <h3 style={{ color: "#005555", margin: "5px 0" }}>$1,291,000</h3>
-                <p style={{ margin: "5px 0", fontSize: "14px" }}>5232 California Fake, Ave. 21BC</p>
-                <p style={{ fontWeight: "bold", margin: "5px 0" }}>California, USA</p>
-                <p style={{ fontSize: "14px", margin: "5px 0" }}>🏠 2 beds 🛁 2 baths</p>
-                <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", marginTop: "10px" ,}}>View Details</button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button onClick={nextSlide} style={{ position: "absolute", right: "-40px", background: "none", border: "none", cursor: "pointer" }}>
-          <FaChevronRight size={30} color="#005555" />
-        </button>
-      </div>
-    </div>
-  );
-};
-
+ 
 
 export const Properties = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -205,7 +148,7 @@ export const Properties = () => {
     
     
   return (
-
+<div>
      <div style={containerStyle}>
       {/* Navbar */}
       <div style={backgroundStyle}></div>
@@ -241,6 +184,124 @@ export const Properties = () => {
    <h1>Properties</h1>
    <br />
    <h6 >Home    /   properties</h6>
+  </div>
+  {/* features properties */}
+   <div style={{ padding: "50px 0", backgroundColor: "#f8f9fa" }}>
+   <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+     <div style={{ textAlign: "center", marginBottom: "30px" }}>
+       <h2 style={{ fontWeight: "bold", color: "#004085" }}>Featured Properties</h2>
+     </div>
+     <div style={{ display: "flex", gap: "20px", overflowX: "auto" }}>
+       {[{ img: property1 }, { img: property2 }].map((property, index) => (
+         <div key={index} style={{ width: "300px", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}>
+           <a href="property-single.html" style={{ display: "block" }}>
+             <img src={property.img} alt="Property" style={{ width: "100%", height: "200px", borderRadius: "10px" }} />
+           </a>
+           <div style={{ padding: "15px 0" }}>
+             <div style={{ fontSize: "20px", fontWeight: "bold", color: "#007b5e" }}>$1,291,000</div>
+             <div style={{ color: "#6c757d", marginBottom: "10px" }}>5232 California Fake, Ave. 21BC</div>
+             <div style={{ fontWeight: "bold", marginBottom: "10px" }}>California, USA</div>
+             <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "10px" }}>
+               <span role="img" aria-label="bed">🏡</span> 2 beds
+               <span role="img" aria-label="bath">🌊</span> 2 baths
+             </div>
+             <a href="property-single.html" style={{ display: "block", textAlign: "center", backgroundColor: "#007b5e", color: "#fff", padding: "10px", borderRadius: "5px", textDecoration: "none" }}>
+               View Details
+             </a>
+           </div>
+         </div>
+       ))}
+     </div>
+   </div>
+ </div>
+ {/* footer */}
+ <div style={{ backgroundColor: "#8888", padding: "50px 0" }}>
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Contact Section */}
+        <div>
+          <h4 style={{ fontWeight: "bold" ,color:"#005555"}}>CONTACT</h4>
+          <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+          <p>+1(123)-456-7890</p>
+          <p>+1(123)-456-7890</p>
+          <p>info@mydomain.com</p>
+        </div>
+
+        {/* Sources Section */}
+        <div>
+          <h4 style={{ fontWeight: "bold",color:"#005555" }}>SOURCES</h4>
+          <div style={{ display: "flex", gap: "40px" }}>
+            <div>
+              <p>About us</p>
+              <p>Services</p>
+              <p>Vision</p>
+              <p>Mission</p>
+              <p>Terms</p>
+              <p>Privacy</p>
+            </div>
+            <div>
+              <p>Partners</p>
+              <p>Business</p>
+              <p>Careers</p>
+              <p>Blog</p>
+              <p>FAQ</p>
+              <p>Creative</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Links Section */}
+        <div>
+          <h4 style={{ fontWeight: "bold",color:"#005555" }}>LINKS</h4>
+          <p>Our Vision</p>
+          <p>About us</p>
+          <p>Contact us</p>
+          {/* Social Media Icons */}
+          <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+            {["instagram", "twitter", "facebook", "linkedin", "pinterest", "dribbble"].map(
+              (icon, index) => (
+                <div
+                  key={index}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    backgroundColor: "#ddd",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <i className={`fab fa-${icon}`} style={{ fontSize: "18px" }}></i>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright Section */}
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: "40px",
+          fontSize: "14px",
+        }}
+      >
+        <p>Copyright © 2025. All Rights Reserved. — Designed with love by Untree.co</p>
+        <p>Distributed by themewagon</p>
+      </div>
     </div>
+
+
+
+
+</div>
   )
 }

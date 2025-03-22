@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import background1 from "../../assets/images/bg1.jpg";
 import background2 from "../../assets/images/bg2.jpg";
 import background3 from "../../assets/images/bg3.jpg";
+import { div } from 'framer-motion/client';
 
 
 // import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
@@ -10,74 +11,7 @@ import background3 from "../../assets/images/bg3.jpg";
 
 
 
-const PropertySlider = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const navigate = useNavigate();
-  const visibleProperties = 3;
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex + visibleProperties < properties.length ? prevIndex + 1 : 0
-      );
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + visibleProperties < properties.length ? prevIndex + visibleProperties : 0
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex - visibleProperties >= 0 ? prevIndex - visibleProperties : properties.length - visibleProperties
-    );
-  };
-  
-
-  return (
-    <div style={{ textAlign: "center", padding: "40px 0", position: "relative", maxWidth: "1200px", margin: "0 auto" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "50px" }}>
-      <h2 style={{ color: "black" }}>POPULAR PROPERTIES</h2>
-        <button 
-          onClick={() => navigate("/signup")}
-          style={{ padding: "10px 20px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-          View all properties
-        </button>
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-        <button onClick={prevSlide} style={{ position: "absolute", left: "-40px", background: "none", border: "none", cursor: "pointer" }}>
-          <FaChevronLeft size={30} color="#005555" />
-        </button>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px", overflow: "hidden", width: "100%" }}>
-          {properties.slice(currentIndex, currentIndex + visibleProperties).map((property, index) => (
-            <div key={index} style={{ width: "300px", position: "relative", textAlign: "left", background: "#fff", borderRadius: "10px", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <div style={{ position: "relative", width: "100%" }}>
-                <img src={property} alt="Property" style={{ width: "100%", height: "200px", objectFit: "cover" }} />
-                <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0, 0, 0, 0.4)", display: "flex", alignItems: "center", justifyContent: "center", opacity: 0, transition: "opacity 0.3s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
-                  onMouseLeave={(e) => e.currentTarget.style.opacity = 0}>
-                 
-                </div>
-              </div>
-              <div style={{ padding: "15px", position: "relative", zIndex: 2, textAlign: "center" }}>
-                <h3 style={{ color: "#005555", margin: "5px 0" }}>$1,291,000</h3>
-                <p style={{ margin: "5px 0", fontSize: "14px" }}>5232 California Fake, Ave. 21BC</p>
-                <p style={{ fontWeight: "bold", margin: "5px 0" }}>California, USA</p>
-                <p style={{ fontSize: "14px", margin: "5px 0" }}>🏠 2 beds 🛁 2 baths</p>
-                <button style={{ padding: "10px 15px", backgroundColor: "#005555", color: "white", border: "none", borderRadius: "5px", cursor: "pointer", marginTop: "10px" ,}}>View Details</button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button onClick={nextSlide} style={{ position: "absolute", right: "-40px", background: "none", border: "none", cursor: "pointer" }}>
-          <FaChevronRight size={30} color="#005555" />
-        </button>
-      </div>
-    </div>
-  );
-};
 
 
 export const ContactUs = () => {
@@ -205,7 +139,7 @@ export const ContactUs = () => {
     
     
   return (
-
+<div>
      <div style={containerStyle}>
       {/* Navbar */}
       <div style={backgroundStyle}></div>
@@ -241,6 +175,91 @@ export const ContactUs = () => {
    <h1>Contact Us</h1>
    <br />
    <h6 >Home / Contact Us</h6>
+    </div>
+     {/* footer */}
+     <div style={{ backgroundColor: "#8888", padding: "50px 0" }}>
+          <div
+            style={{
+              maxWidth: "1200px",
+              margin: "0 auto",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            {/* Contact Section */}
+            <div>
+              <h4 style={{ fontWeight: "bold" ,color:"#005555"}}>CONTACT</h4>
+              <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+              <p>+1(123)-456-7890</p>
+              <p>+1(123)-456-7890</p>
+              <p>info@mydomain.com</p>
+            </div>
+    
+            {/* Sources Section */}
+            <div>
+              <h4 style={{ fontWeight: "bold",color:"#005555" }}>SOURCES</h4>
+              <div style={{ display: "flex", gap: "40px" }}>
+                <div>
+                  <p>About us</p>
+                  <p>Services</p>
+                  <p>Vision</p>
+                  <p>Mission</p>
+                  <p>Terms</p>
+                  <p>Privacy</p>
+                </div>
+                <div>
+                  <p>Partners</p>
+                  <p>Business</p>
+                  <p>Careers</p>
+                  <p>Blog</p>
+                  <p>FAQ</p>
+                  <p>Creative</p>
+                </div>
+              </div>
+            </div>
+    
+            {/* Links Section */}
+            <div>
+              <h4 style={{ fontWeight: "bold",color:"#005555" }}>LINKS</h4>
+              <p>Our Vision</p>
+              <p>About us</p>
+              <p>Contact us</p>
+              {/* Social Media Icons */}
+              <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                {["instagram", "twitter", "facebook", "linkedin", "pinterest", "dribbble"].map(
+                  (icon, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        backgroundColor: "#ddd",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <i className={`fab fa-${icon}`} style={{ fontSize: "18px" }}></i>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+    
+          {/* Copyright Section */}
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "40px",
+              fontSize: "14px",
+            }}
+          >
+            <p>Copyright © 2025. All Rights Reserved. — Designed with love by Untree.co</p>
+            <p>Distributed by themewagon</p>
+          </div>
+        </div>
     </div>
   )
 }

@@ -872,7 +872,7 @@ export const LandingPage = () => {
         </div>
       </div>
     </div>
-
+{/* footer */}
      <div style={{ backgroundColor: "#8888", padding: "50px 0" }}>
       <div
         style={{
