@@ -137,7 +137,60 @@ export const ContactUs = () => {
         transition: "background 0.3s",
       };
     
-    
+      const iconStyle = {
+        display: "inline-block",
+        backgroundColor: "#005555",
+        color: "white",
+        fontSize: "18px",
+        padding: "10px",
+        borderRadius: "50%",
+        marginRight: "10px",
+      };
+      
+      const headingStyle = {
+        display: "inline-block",
+        fontSize: "18px",
+        fontWeight: "bold",
+      };
+      
+      const textStyle = {
+        fontSize: "14px",
+        color: "#555",
+      };
+      
+      const rowStyle = {
+        display: "flex",
+        gap: "15px",
+      };
+      
+      const inputStyle = {
+        flex: 1,
+        padding: "10px",
+        fontSize: "14px",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        width: "100%",
+      };
+      
+      const textareaStyle = {
+        padding: "10px",
+        fontSize: "14px",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        width: "100%",
+        resize: "none",
+      };
+      
+      const buttonStyle = {
+        backgroundColor: "#005555",
+        color: "white",
+        padding: "12px",
+        fontSize: "16px",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        textAlign: "center",
+      };
   return (
 <div>
      <div style={containerStyle}>
@@ -176,6 +229,58 @@ export const ContactUs = () => {
    <br />
    <h6 >Home / Contact Us</h6>
     </div>
+    {/* contactus */}
+    <div style={{ padding: "50px", maxWidth: "1200px", margin: "auto" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "30px" }}>
+        
+        {/* Left Section */}
+        <div style={{ flex: "1", minWidth: "400px" }}>
+          <div style={{ marginBottom: "20px" }}>
+            <div style={iconStyle}>📍</div>
+            <h4 style={headingStyle}>Location:</h4>
+            <p style={textStyle}>
+              43 Raymouth Rd. Baltemoer, <br /> London 3910
+            </p>
+          </div>
+          <div style={{ marginBottom: "20px" }}>
+            <div style={iconStyle}>⏰</div>
+            <h4 style={headingStyle}>Open Hours:</h4>
+            <p style={textStyle}>
+              Sunday-Friday: <br /> 11:00 AM - 23:00 PM
+            </p>
+          </div>
+          <div style={{ marginBottom: "20px" }}>
+            <div style={iconStyle}>📧</div>
+            <h4 style={headingStyle}>Email:</h4>
+            <p style={textStyle}>info@Untree.co</p>
+          </div>
+          <div>
+            <div style={iconStyle}>📞</div>
+            <h4 style={headingStyle}>Call:</h4>
+            <p style={textStyle}>+1 1234 55488 55</p>
+          </div>
+        </div>
+
+        {/* Right Section - Form */}
+        <div style={{ flex: "2", minWidth: "400px" ,padding:"20px"}}>
+          <form style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <div style={rowStyle}>
+              <input type="text" placeholder="Your Name" style={inputStyle} />
+              <input type="email" placeholder="Your Email" style={inputStyle} />
+            </div>
+            <input type="text" placeholder="Subject" style={inputStyle} />
+            <textarea placeholder="Message" rows="5" style={textareaStyle}></textarea>
+            <button type="submit" style={buttonStyle}>Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
      {/* footer */}
      <div style={{ backgroundColor: "#8888", padding: "50px 0" }}>
           <div

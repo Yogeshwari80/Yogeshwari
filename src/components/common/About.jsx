@@ -4,6 +4,11 @@ import background1 from "../../assets/images/bg1.jpg";
 import background2 from "../../assets/images/bg2.jpg";
 import background3 from "../../assets/images/bg3.jpg";
 import { div } from 'framer-motion/client';
+import bgImage from '../../assets/images/bg3.jpg'; 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+
+
 
 
 // import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
@@ -178,6 +183,140 @@ export const About = () => {
    <br />
    <h6 >Home    /   About</h6>
     </div>
+            {/* aboutus */}
+            <div className="section" style={{ padding: '50px 0', backgroundColor: '#f8f9fa' }}>
+  <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="row" style={{ textAlign: 'left', marginBottom: '30px' }}>
+      <div className="col-12">
+        <h2 style={{ fontWeight: 'bold', color: '#002855', marginBottom: '20px' }}>About Us</h2>
+      </div>
+      <div className="col-lg-6">
+        <p style={{ color: 'rgba(0, 0, 0, 0.5)', lineHeight: '1.6' }}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam enim
+          pariatur similique debitis vel nisi qui reprehenderit totam? Quod
+          maiores.
+        </p>
+        <p style={{ color: 'rgba(0, 0, 0, 0.5)', lineHeight: '1.6' }}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni saepe,
+          explicabo nihil. Est, autem error cumque ipsum repellendus veniam sed
+          blanditiis unde ullam maxime veritatis perferendis cupiditate, at non
+          esse!
+        </p>
+        <p style={{ color: 'rgba(0, 0, 0, 0.5)', lineHeight: '1.6' }}>
+          Enim, nisi labore exercitationem facere cupiditate nobis quod autem
+          veritatis quis minima expedita. Cumque odio illo iusto reiciendis,
+          labore impedit omnis, nihil aut atque, facilis necessitatibus
+          asperiores porro qui nam.
+        </p>
+      </div>
+      <div className="col-lg-6">
+        <p style={{ color: 'rgba(0, 0, 0, 0.5)', lineHeight: '1.6' }}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni saepe,
+          explicabo nihil. Est, autem error cumque ipsum repellendus veniam sed
+          blanditiis unde ullam maxime veritatis perferendis cupiditate, at non
+          esse!
+        </p>
+        <p style={{ color: 'rgba(0, 0, 0, 0.5)', lineHeight: '1.6' }}>
+          Enim, nisi labore exercitationem facere cupiditate nobis quod autem
+          veritatis quis minima expedita. Cumque odio illo iusto reiciendis,
+          labore impedit omnis, nihil aut atque, facilis necessitatibus
+          asperiores porro qui nam.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{/* <div className="section" style={{ paddingTop: '0px' }}>
+  <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <div className="row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}> */}
+      
+      {/* Right Side Image */}
+      {/* <div className="col-lg-7" style={{ marginBottom: '50px', order: '2' }}>
+        <div className="img-about" style={{ position: 'relative' }}>
+        <img 
+                src={bgImage} 
+                alt="Image" 
+                className="img-fluid" 
+                style={{ width: '100%', borderRadius: '10px' }} 
+              />
+        </div>
+      </div> */}
+
+      {/* Left Side Features */}
+      {/* <div className="col-lg-4"> */}
+        
+        {/* Feature 1 */}
+        {/* <div className="d-flex feature-h" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+          <span className="wrap-icon" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            width: '60px', 
+            height: '60px', 
+            borderRadius: '50%', 
+            backgroundColor: '#f8f9fa', 
+            marginRight: '15px' 
+          }}>
+            <span className="icon-home2" style={{ fontSize: '24px' }} />
+          </span>
+          <div className="feature-text">
+            <h3 className="heading" style={{ margin: '0', fontWeight: '600', color: '#002855' }}>Quality properties</h3>
+            <p style={{ color: 'rgba(0, 0, 0, 0.5)', marginTop: '5px' }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum iste.
+            </p>
+          </div>
+        </div> */}
+
+        {/* Feature 2 */}
+        {/* <div className="d-flex feature-h" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+          <span className="wrap-icon" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            width: '60px', 
+            height: '60px', 
+            borderRadius: '50%', 
+            backgroundColor: '#f8f9fa', 
+            marginRight: '15px' 
+          }}>
+            <span className="icon-person" style={{ fontSize: '24px' }} />
+          </span>
+          <div className="feature-text">
+            <h3 className="heading" style={{ margin: '0', fontWeight: '600', color: '#002855' }}>Top rated agents</h3>
+            <p style={{ color: 'rgba(0, 0, 0, 0.5)', marginTop: '5px' }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum iste.
+            </p>
+          </div>
+        </div> */}
+
+        {/* Feature 3 */}
+        {/* <div className="d-flex feature-h" style={{ display: 'flex', alignItems: 'center' }}>
+          <span className="wrap-icon" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            width: '60px', 
+            height: '60px', 
+            borderRadius: '50%', 
+            backgroundColor: '#f8f9fa', 
+            marginRight: '15px' 
+          }}>
+            <span className="icon-security" style={{ fontSize: '24px' }} />
+          </span>
+          <div className="feature-text">
+            <h3 className="heading" style={{ margin: '0', fontWeight: '600', color: '#002855' }}>Easy and safe</h3>
+            <p style={{ color: 'rgba(0, 0, 0, 0.5)', marginTop: '5px' }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum iste.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div> */}
+ 
  {/* footer */}
  <div style={{ backgroundColor: "#8888", padding: "50px 0" }}>
           <div
@@ -262,7 +401,8 @@ export const About = () => {
             <p>Distributed by themewagon</p>
           </div>
         </div>
-    
+
+
 
 
 
