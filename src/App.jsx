@@ -17,6 +17,7 @@ import { Properties } from './components/common/Properties'
 import { Services } from './components/common/Services'
 import { About } from './components/common/About'
 import { ContactUs } from './components/common/ContactUs'
+import { Inquiry } from './components/user/Inquiry'
 
 
 
@@ -64,6 +65,7 @@ function App() {
       <Route path="" element={<PrivateRoutes />}>
         <Route path="/user" element={<UserSidebar />}>
           <Route path="add-property" element={<AddProperty />} />
+          <Route path='inquiry' element={<Inquiry></Inquiry>}></Route>
        
         </Route>
         

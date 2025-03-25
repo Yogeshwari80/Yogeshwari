@@ -102,6 +102,12 @@ export const UserSidebar = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to='/user/inquiry' className="nav-link">
+                  <i className="nav-icon bi bi-palette" />
+                  <p>Inquiry</p>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <a href="#" className="nav-link">
                   <i className="nav-icon bi bi-box-seam-fill" />
                   <p>

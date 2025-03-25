@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+// import { data } from 'react-router-dom';
 
 export const AddProperty = () => {
  
@@ -9,6 +10,11 @@ const [states, setStates] = useState([]);
 const [cities, setCities] = useState([]);
 const [areas, setAreas] = useState([]);
 const [categories,setCategories] = useState([])
+const [categoryId, setCategoryId] = useState("");
+const [stateId,setStatesId]=useState("")
+const [cityId,setCitysId]=useState("")
+const [areaId,setAreaId]=useState("")
+
 
 
   const { register, handleSubmit } = useForm();
@@ -29,28 +35,7 @@ const [categories,setCategories] = useState([])
     }
   };
   
-  // const getAllCategories = async () => {
-  //   try {
-  //     console.log("get all category");
-      
-  //     const fetchedCategories = await axios.get("/api/category/");
-  //     console.log(fetchedCategories.data.data);
-      
-  //     setCategories(fetchedCategories.data.data)
-  //   } catch (error) {
-  //     console.log(error);
-      
-  //   }
-  // }
-  // const getAllCategories = async () => {
-  //   try {
-  //     const response = await axios.get("/api/category/");
-  //     console.log("Categories fetched:", response.data);
-  //     setCategories(response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching states:", error.response ? error.response.data : error.message);
-  //   }
-  // };
+
   const getCitiesByState = async (stateId) => {
     
     try {
@@ -104,38 +89,65 @@ const submitHandler = async (data) => {
   
   const formData = new FormData();
   formData.append("property_name",data.property_name)
-  formData.append("category_id",data.category_id)
+  // formData.append("category_id",data.category_id)
+  formData.append("category_id", categoryId || ""); 
+  // formData.append("property_type",data.property_type)
   formData.append("listing_type",data.listing_type)
-  formData.append("base_price",data.basePrice)
+  // formData.append("base_price",data.basePrice)
+  formData.append("base_price", parseFloat(data.base_price) || 0);
+  formData.append("negotiable", data.negotiable )
   formData.append("address",data.address)
-  formData.append("state_id",data.stateId)
-  formData.append("city_id",data.cityId)
-  formData.append("areaId",data.areaId)
-  formData.append("nearbyLandmark",data.nearbyLandmark)
-  formData.append("googleMapLink",data.googleMapLink)
-  formData.append("userId",data.userId)
-  formData.append("builtUpArea",data.builtUpArea)
-  formData.append("carpetArea",data.carpetArea)
+  // formData.append("state_id",data.stateId)
+  // formData.append("city_id",data.cityId)
+  //   formData.append("area_id",data.areaId)
+  formData.append("state_id", stateId || ""); 
+  formData.append("city_id", cityId || ""); 
+  formData.append("area_id", areaId || ""); 
+  formData.append("landmarks",data.landmarks)
+  formData.append("maps_link",data.mapsLink)  
+ // formData.append("userId",data.userId)
+  formData.append("built_up_area",data.builtUpArea)
+  formData.append("carpet_area",data.carpetArea)
   formData.append("bedrooms",data.bedrooms)
+  formData.append("bathrooms",data.bathrooms)
   formData.append("balconies",data.balconies)
-  formData.append("furnishingStatus",data.furnishingStatus)
-  formData.append("propertyAge",data.propertyAge)
-  formData.append("facingDirection",data.facingDirection)
-  formData.append("parkingSlot",data.parkingSlot)
-  formData.append("property_type",data.property_type)
+  formData.append("furnishing",data.furnishing)
+  // formData.append("age_of_property",data.ageOfProperty)
+  formData.append("age_of_property", parseInt(data.age_of_property) || 0);
+  formData.append("facing",data.facing)
+  formData.append("floor_no",data. floorNo)
+  formData.append("total_floors",data.totalFloors)
+  formData.append("parking_slots", parseInt(data.parking_slots) || 0);
+  // formData.append("parking_slots",data.parkingSlot)
+
   formData.append("image",data.propertyImage[0])
+  console.log("Form Data:", Object.fromEntries(formData));
   console.log("form data..",formData);
 
-  // const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
-  // console.log(res.data);
-  const res = await axios.post("/api/create_property_with_file",formData,{
-    headers: {
-        "Content-Type": "multipart/form-data",
-    },
-})
-console.log(res.data)//axios variable....
+  const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
+  console.log(res.data);
+ 
 
-}
+
+  // try {
+  //   const res = await axios.post("http://localhost:8000/api/api/create_property_with_file", formData, {
+  //     headers: { "Content-Type": "multipart/form-data" },
+  //   });
+  //   console.log("Property added successfully", res.data);
+  // } catch (error) {
+  //   console.error("Error adding property:", error);
+  // }
+};
+
+
+
+//   const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData,{
+//     headers: {
+//         "Content-Type": "multipart/form-data",
+//     },
+// })
+// console.log(res.data)
+// }
 
 
     return (
@@ -198,14 +210,14 @@ console.log(res.data)//axios variable....
               <div className="row mb-3">
                 <div className="col">
                   <label htmlFor="price" className="form-label">Price</label>
-                  <input type="number" {...register("basePrice")} className="form-control" id="price" placeholder="Enter price" />
+                  <input type="number" {...register("base_price")} className="form-control" id="price" placeholder="Enter price" />
                 </div>
                 <div className="col">
                   <label htmlFor="negotiable" className="form-label">Negotiable</label>
                   <select className="form-select" id="negotiable"{...register("negotiable", { required: true })}>
                     <option value="">Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
                   </select>
                 </div>
               </div>
@@ -236,7 +248,7 @@ console.log(res.data)//axios variable....
                 
                 <div className="col">
                   <label htmlFor="city" className="form-label">City</label>
-                  <select className="form-select" id="cityc"  onChange={(event) => {getAreasByCity(event.target.value)}}>
+                  <select className="form-select" id="city"  onChange={(event) => {getAreasByCity(event.target.value)}}>
                     <option value="">Select City</option>
                     {
                      cities?.map((city , index) => {
@@ -268,7 +280,7 @@ console.log(res.data)//axios variable....
               </div>
               <div className="mb-3">
                 <label htmlFor="mapsLink" className="form-label">Google Maps Link</label>
-                <input type="url" className="form-control" id="mapsLink"  placeholder="https://maps.google.com/..." {...register("mapsLink")}/>
+                <input type="url" className="form-control" id="mapsLink"  placeholder="https://maps.google.com/..." {...register("maps_link")}/>
               </div>
       
           
@@ -309,7 +321,7 @@ console.log(res.data)//axios variable....
               <div className="row mb-3">
                 <div className="col">
                   <label htmlFor="age" className="form-label">Age of Property (Years)</label>
-                  <input type="number" className="form-control" id="age" placeholder="Years" {...register("age")} />
+                  <input type="number" className="form-control" id="age" placeholder="Years" {...register("age_of_property")} />
                 </div>
                 <div className="col">
                   <label htmlFor="floorNo" className="form-label">Floor Number</label>
@@ -332,7 +344,7 @@ console.log(res.data)//axios variable....
               </div>
               <div className="mb-3">
                 <label htmlFor="parking" className="form-label">Parking Availability (Slots)</label>
-                <input type="number" className="form-control" id="parking" placeholder="Number of parking slots" {...register("parking")}  />
+                <input type="number" className="form-control" id="parking" placeholder="Number of parking slots" {...register("parking_slots")}  />
               </div>
       
  
