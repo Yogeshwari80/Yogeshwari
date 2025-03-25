@@ -159,7 +159,7 @@ export const Services = () => {
       <li><Link to="/contact" style={{ color: "white", textDecoration: "none" }}>CONTACT US</Link></li>
 
       {/* Account Dropdown */}
-      <li 
+      {/* <li 
         style={{ position: "relative", cursor: "pointer" }} 
         className="dropdown"
         onMouseEnter={() => setDropdownOpen(true)}
@@ -170,7 +170,35 @@ export const Services = () => {
           <li><Link to="/login" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>Login</Link></li>
           <li><Link to="/signup" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>Signup</Link></li>
         </ul>
-      </li>
+      </li> */}
+      {/* Account Dropdown */}
+<li 
+  style={{ position: "relative", cursor: "pointer" }} 
+  className="dropdown"
+  onMouseEnter={() => setDropdownOpen(true)}
+  onMouseLeave={() => setDropdownOpen(false)}
+>
+  <Link to="#" style={{ color: "white", textDecoration: "none" }}>ACCOUNT ▾</Link>
+  <ul 
+    style={{ 
+      ...dropdownStyle, 
+      display: dropdownOpen ? "block" : "none" // Ensure dropdown visibility is controlled
+    }} 
+    className="dropdown-menu"
+  >
+    <li>
+      <Link to="/login" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>
+        Login
+      </Link>
+    </li>
+    <li>
+      <Link to="/signup" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>
+        Signup
+      </Link>
+    </li>
+  </ul>
+</li>
+
     </ul>
  
    </div>

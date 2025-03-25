@@ -88,7 +88,7 @@ const [categories,setCategories] = useState([])
   };
   
   useEffect(() => {
-    getAllCategories(); // Fetch categories when component mounts
+    getAllCategories(); 
   }, []);
 
 
@@ -96,7 +96,7 @@ const [categories,setCategories] = useState([])
 
 const submitHandler = async (data) => {
   const userId = localStorage.getItem("id")
-  console.log(data);
+  console.log("data.....",data);
   data.userId = userId
   console.log(data.propertyImage[0]);
 
@@ -124,10 +124,16 @@ const submitHandler = async (data) => {
   formData.append("parkingSlot",data.parkingSlot)
   formData.append("property_type",data.property_type)
   formData.append("image",data.propertyImage[0])
-  console.log(formData);
-  
-  const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
-  console.log(res.data);
+  console.log("form data..",formData);
+
+  // const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
+  // console.log(res.data);
+  const res = await axios.post("/api/create_property_with_file",formData,{
+    headers: {
+        "Content-Type": "multipart/form-data",
+    },
+})
+console.log(res.data)//axios variable....
 
 }
 
