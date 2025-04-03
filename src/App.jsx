@@ -18,6 +18,7 @@ import { Services } from './components/common/Services'
 import { About } from './components/common/About'
 import { ContactUs } from './components/common/ContactUs'
 import { Inquiry } from './components/user/Inquiry'
+import { ResetPassword } from './components/common/ResetPassword'
 
 
 
@@ -50,13 +51,15 @@ function App() {
   >
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/resetpassword/:token" element ={<ResetPassword/>}></Route>
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element ={<LandingPage/>}></Route>
       {/* <Route path="/" element ={<LandingPage/>}></Route> */}
      <Route path='/properties' element={<Properties/>}></Route>
      <Route path='/services'element={<Services/>}></Route>
      <Route path='/about' element={<About/>}></Route>
-<Route path='/contact' element={<ContactUs/>}></Route>
+     <Route path='/contact' element={<ContactUs/>}></Route>
+     
 
 
 
@@ -68,6 +71,7 @@ function App() {
           <Route path='inquiry' element={<Inquiry></Inquiry>}></Route>
        
         </Route>
+        
         
       </Route>
     </Routes>

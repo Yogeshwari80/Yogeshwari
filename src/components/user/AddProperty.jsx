@@ -11,13 +11,22 @@ const [cities, setCities] = useState([]);
 const [areas, setAreas] = useState([]);
 const [categories,setCategories] = useState([])
 const [categoryId, setCategoryId] = useState("");
-const [stateId,setStatesId]=useState("")
-const [cityId,setCitysId]=useState("")
-const [areaId,setAreaId]=useState("")
+const [stateId, setStateId] = useState("");
+const [cityId, setCityId] = useState("");
+const [areaId, setAreaId] = useState("");
+
+// const [stateId,setStatesId]=useState("")
+// const [cityId,setCitysId]=useState("")
+// const [areaId,setAreaId]=useState("")
+// const selectedCategoryId = categoryId || "default-category-id";
+// const selectedStateId = stateId || "default-state-id";
+// const selectedCityId = cityId || "default-city-id";
+// const selectedAreaId = areaId || "default-area-id";
 
 
 
   const { register, handleSubmit } = useForm();
+  
 
   useEffect(() => {
     getAllStates();
@@ -36,7 +45,7 @@ const [areaId,setAreaId]=useState("")
   };
   
 
-  const getCitiesByState = async (stateId) => {
+  const getCitiesByState = async (states) => {
     
     try {
       const response = await axios.get(`/api/city/${stateId}`);
@@ -90,7 +99,8 @@ const submitHandler = async (data) => {
   const formData = new FormData();
   formData.append("property_name",data.property_name)
   // formData.append("category_id",data.category_id)
-  formData.append("category_id", categoryId || ""); 
+  // formData.append("category_id", categoryId || ""); 
+  // formData.append("category_id", selectedCategoryId);
   // formData.append("property_type",data.property_type)
   formData.append("listing_type",data.listing_type)
   // formData.append("base_price",data.basePrice)
@@ -100,12 +110,19 @@ const submitHandler = async (data) => {
   // formData.append("state_id",data.stateId)
   // formData.append("city_id",data.cityId)
   //   formData.append("area_id",data.areaId)
-  formData.append("state_id", stateId || ""); 
+  formData.append("state_id", stateId); 
   formData.append("city_id", cityId || ""); 
   formData.append("area_id", areaId || ""); 
+  // formData.append("state_id", selectedStateId);
+  // formData.append("city_id", selectedCityId);
+  // formData.append("area_id", selectedAreaId);
+  formData.append("category_id", categoryId);
+  // formData.append("state_id", stateId);
+  // formData.append("city_id", cityId);
+  // formData.append("area_id", areaId);
   formData.append("landmarks",data.landmarks)
   formData.append("maps_link",data.mapsLink)  
- // formData.append("userId",data.userId)
+ formData.append("user_id",data.userId)
   formData.append("built_up_area",data.builtUpArea)
   formData.append("carpet_area",data.carpetArea)
   formData.append("bedrooms",data.bedrooms)
@@ -124,30 +141,16 @@ const submitHandler = async (data) => {
   console.log("Form Data:", Object.fromEntries(formData));
   console.log("form data..",formData);
 
-  const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData)
+  const res = await axios.post("http://localhost:8000/api/create_property_file",formData)
   console.log(res.data);
  
 
 
-  // try {
-  //   const res = await axios.post("http://localhost:8000/api/api/create_property_with_file", formData, {
-  //     headers: { "Content-Type": "multipart/form-data" },
-  //   });
-  //   console.log("Property added successfully", res.data);
-  // } catch (error) {
-  //   console.error("Error adding property:", error);
-  // }
+  
 };
 
 
 
-//   const res = await axios.post("http://localhost:8000/api/create_property_with_file",formData,{
-//     headers: {
-//         "Content-Type": "multipart/form-data",
-//     },
-// })
-// console.log(res.data)
-// }
 
 
     return (
@@ -165,38 +168,26 @@ const submitHandler = async (data) => {
                 <label htmlFor="propertyTitle" className="form-label">Property Title</label>
                 <input type="text" {...register("property_name")} className="form-control" id="propertyTitle" placeholder="Enter property title" />
               </div>
-              {/* <div className="mb-3">
-                <label htmlFor="propertyType" className="form-label">Property Type</label>
-                <select className="form-select" {...register("category_id")} id="propertyType">
-                  <option value="">Select Type</option>
-                  <option value="apartment">Apartment</option>
-                  <option value="house">House</option>
-                  <option value="villa">Villa</option>
-                  <option value="commercial">Commercial</option>
-                  <option value="plot">Plot</option>
-                </select>
-              </div> */}
-               {/* <div className="mb-3">
-                <label htmlFor="propertyType" className="form-label" >Property Type</label>
-                <select className="form-select"  id="propertyType" {...register("category_id")}>
-                  <option value="">Select Type</option>
-                  {
-                    categories?.map((category) => {
-                      return <option value={category._id}>{category.name}</option>
-                    })
-                  }
-                </select>
-              </div> */}
+             
               <div className="mb-3">
     <label htmlFor="propertyType" className="form-label">Property Type</label>
-    <select className="form-select" id="propertyType" {...register("category_id")}>
+    {/* <select className="form-select" id="propertyType" {...register("category_id")}>
       <option value="">Select Type</option>
       {categories.map((category) => (
         <option key={category._id} value={category._id}>
           {category.name}
         </option>
       ))}
-    </select>
+    </select> */}
+    <select className="form-select" onChange={(event) => setCategoryId(event.target.value)}>
+  <option value="">Select Type</option>
+  {categories.map((category) => (
+    <option key={category._id} value={category._id}>
+      {category.name}
+    </option>
+  ))}
+</select>
+
   </div>
               <div className="mb-3">
                 <label htmlFor="listingType" className="form-label">Listing Type</label>
@@ -232,7 +223,7 @@ const submitHandler = async (data) => {
                 <div className="col">
                   <label htmlFor="state" className="form-label">State</label>
                
-                  <select className="form-select" onChange={(event) => {getCitiesByState(event.target.value)}}>
+                  {/* <select className="form-select" onChange={(event) => {getCitiesByState(event.target.value)}}>
 
                     <option value="">Select State</option>
                     
@@ -241,38 +232,66 @@ const submitHandler = async (data) => {
                       return <option key={index} value={state._id}>{state.name}</option>
                      })
                   } 
-                  </select> 
+                  </select>  */}
+                  <select className="form-select" onChange={(event) => { 
+  const selectedStateId = event.target.value;
+  setStateId(selectedStateId);
+  getCitiesByState(selectedStateId); // Fetch cities based on the selected state
+}}>
+  <option value="">Select State</option>
+  {states?.map((state) => (
+    <option key={state._id} value={state._id}>{state.name}</option>
+  ))}
+</select>
+
       
 
                 </div>
                 
                 <div className="col">
                   <label htmlFor="city" className="form-label">City</label>
-                  <select className="form-select" id="city"  onChange={(event) => {getAreasByCity(event.target.value)}}>
+                  {/* <select className="form-select" id="city"  onChange={(event) => {getAreasByCity(event.target.value)}}>
                     <option value="">Select City</option>
                     {
                      cities?.map((city , index) => {
                       return <option key={index} value={city._id}>{city.name}</option>
                      })
                   }
-                  </select>
+                  </select> */}
+                  <select className="form-select" onChange={(event) => { 
+  const selectedCityId = event.target.value;
+  setCityId(selectedCityId);
+  getAreasByCity(selectedCityId);
+}}>
+  <option value="">Select City</option>
+  {cities?.map((city) => (
+    <option key={city._id} value={city._id}>{city.name}</option>
+  ))}
+</select>
+
                 </div>
                 <div className="col">
                   <label htmlFor="area" className="form-label">Area</label>
-                  <select className="form-select" id="city">
+                  {/* <select className="form-select" id="city">
                     <option value="">Select Area</option>
                     {
                      areas?.map((area , index) => {
                       return <option key={index} value={area._id}>{area.name}</option>
                      })
                   }
-                  </select>
+                  </select> */}
+                  <select className="form-select" onChange={(event) => { 
+  setAreaId(event.target.value);
+}}>
+  <option value="">Select Area</option>
+  {areas?.map((area) => (
+    <option key={area._id} value={area._id}>{area.name}</option>
+  ))}
+</select>
+
                 </div>
                 
-                  {/* <div className="col">
-                    <label htmlFor="zip" className="form-label">ZIP / Pincode</label>
-                    <input type="text" className="form-control" id="zip" placeholder="ZIP or Pincode" />
-                  </div> */}
+                
               </div>
               <div className="mb-3">
                 <label htmlFor="landmarks" className="form-label">Nearby Landmarks</label>
@@ -348,39 +367,8 @@ const submitHandler = async (data) => {
               </div>
       
  
-              {/* <h5 className="mb-3">Amenities & Features</h5>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="lift"{...register("amenities.lift")} />
-                <label className="form-check-label" htmlFor="lift">Lift/Elevator</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="swimmingPool" {...register("amenities.swimmingPool")}/>
-                <label className="form-check-label" htmlFor="swimmingPool">Swimming Pool</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="gym" {...register("amenities.gym")}/>
-                <label className="form-check-label" htmlFor="gym">Gym</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="garden" {...register("amenities.garden")} />
-                <label className="form-check-label" htmlFor="garden">Garden/Park</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="security" {...register("amenities.security")}/>
-                <label className="form-check-label" htmlFor="security">Security Guard</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="cctv"{...register("amenities.cctv")} />
-                <label className="form-check-label" htmlFor="cctv">CCTV Surveillance</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="powerBackup"{...register("amenities.powerBackup")} />
-                <label className="form-check-label" htmlFor="powerBackup">Power Backup</label>
-              </div>
-              <div className="form-check mb-2">
-                <input className="form-check-input" type="checkbox" id="clubhouse"{...register("amenities.clubhouse")} />
-                <label className="form-check-label" htmlFor="clubhouse">Clubhouse/Community Hall</label>
-              </div> */}
+
+              
       
       {/* Property Media & Documents */}
       <h5 className="mb-3">Property Media & Documents</h5>

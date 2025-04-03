@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import headerBackground from "../../assets/images/backgroundForLogin.jpg";
 import background from "../../assets/images/backgroundForLogin.jpg";
@@ -12,8 +12,11 @@ import {Link, useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [isForgotPasswordClicked, setIsForgotPasswordClicked] = useState(false);
+  const [email, setEmail] = useState("");
   const navigate = useNavigate()
 
+ 
   const submitHandler = async (data) => {
     console.log(data);
     data.roleId = "67c4b09c8385fb8187120578"
@@ -49,6 +52,12 @@ export const Login = () => {
     }
     
   };
+  const forgotPasswordHandler =async()=>{
+    alert(`Password reset link sent to ${email}`);
+    console.log(email)
+    const res = await axios.post("api/forgotpassword?email="+email)
+    console.log(res.data)
+  }
 
     
   const validationSchema = {
@@ -202,7 +211,7 @@ export const Login = () => {
               <span><p style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>{errors.password?.message}</p></span>
             </div>
   
-            <div style={{ textAlign: 'right', marginBottom: '20px' }}>
+            {/* <div style={{ textAlign: 'right', marginBottom: '20px' }}>
               <Link to="/forgot-password" style={{
                 color:'#005555',
                 textDecoration: 'none',
@@ -210,8 +219,104 @@ export const Login = () => {
               }}>
                 Forgot Password?
               </Link>
-            </div>
-  
+            </div> */}
+{/* <div className="forgot-password-container" style={{ textAlign: 'right', marginBottom: '20px' }}> */}
+      {/* Single Forgot Password Link */}
+      {/* {!isForgotPasswordClicked ? (
+        <div className="forgot-password-link">
+          <Link to="#"  style={{
+                color:'#005555', */}
+                {/* // textDecoration: 'none',
+                fontSize: '14px'
+              }}onClick={() => setIsForgotPasswordClicked(true)}>
+            Forgot Password?
+          </Link>
+        </div>
+      ) : (
+        <div className="forgot-password-form">
+          <label>ENTER EMAIL</label>
+          <input
+            type="text"
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <button onClick={forgotPasswordHandler}>Submit</button>
+        </div>
+      )}
+    </div> */}
+     <div style={{ textAlign: "right", marginBottom: "20px" }}>
+      {/* Forgot Password Link */}
+      {!isForgotPasswordClicked ? (
+        <div>
+          <Link
+            to="#"
+            style={{
+              color: "#005555",
+              fontSize: "14px",
+              cursor: "pointer",
+              textDecoration: "none",
+            }}
+            onClick={() => setIsForgotPasswordClicked(true)}
+          >
+            Forgot Password?
+          </Link>
+        </div>
+      ) : (
+        <div
+          style={{
+            marginTop: "10px",
+            padding: "15px",
+            border: "1px solid #ddd",
+            borderRadius: "6px",
+            backgroundColor: "#f7f9fa",
+            textAlign: "left",
+          }}
+        >
+          <label
+            style={{
+              display: "block",
+              fontSize: "14px",
+              color: "#34495e",
+              marginBottom: "5px",
+            }}
+          >
+            Enter Email
+          </label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            style={{
+              width: "100%",
+              padding: "8px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              marginBottom: "10px",
+              fontSize: "14px",
+            }}
+          />
+          <button
+            onClick={forgotPasswordHandler}
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "none",
+              borderRadius: "4px",
+              backgroundColor: "#005555",
+              color: "white",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.3s",
+            }}
+          >
+            Send
+          </button>
+        </div>
+      )}
+    </div>
+
+
             <button
               type="submit"
               style={{
