@@ -15,13 +15,6 @@ const [stateId, setStateId] = useState("");
 const [cityId, setCityId] = useState("");
 const [areaId, setAreaId] = useState("");
 
-// const [stateId,setStatesId]=useState("")
-// const [cityId,setCitysId]=useState("")
-// const [areaId,setAreaId]=useState("")
-// const selectedCategoryId = categoryId || "default-category-id";
-// const selectedStateId = stateId || "default-state-id";
-// const selectedCityId = cityId || "default-city-id";
-// const selectedAreaId = areaId || "default-area-id";
 
 
 
@@ -98,28 +91,19 @@ const submitHandler = async (data) => {
   
   const formData = new FormData();
   formData.append("property_name",data.property_name)
-  // formData.append("category_id",data.category_id)
-  // formData.append("category_id", categoryId || ""); 
-  // formData.append("category_id", selectedCategoryId);
-  // formData.append("property_type",data.property_type)
+
   formData.append("listing_type",data.listing_type)
-  // formData.append("base_price",data.basePrice)
+
   formData.append("base_price", parseFloat(data.base_price) || 0);
   formData.append("negotiable", data.negotiable )
   formData.append("address",data.address)
-  // formData.append("state_id",data.stateId)
-  // formData.append("city_id",data.cityId)
-  //   formData.append("area_id",data.areaId)
+
   formData.append("state_id", stateId); 
   formData.append("city_id", cityId || ""); 
   formData.append("area_id", areaId || ""); 
-  // formData.append("state_id", selectedStateId);
-  // formData.append("city_id", selectedCityId);
-  // formData.append("area_id", selectedAreaId);
+
   formData.append("category_id", categoryId);
-  // formData.append("state_id", stateId);
-  // formData.append("city_id", cityId);
-  // formData.append("area_id", areaId);
+
   formData.append("landmarks",data.landmarks)
   formData.append("maps_link",data.mapsLink)  
  formData.append("user_id",data.userId)
@@ -129,14 +113,11 @@ const submitHandler = async (data) => {
   formData.append("bathrooms",data.bathrooms)
   formData.append("balconies",data.balconies)
   formData.append("furnishing",data.furnishing)
-  // formData.append("age_of_property",data.ageOfProperty)
-  formData.append("age_of_property", parseInt(data.age_of_property) || 0);
+   formData.append("age_of_property", parseInt(data.age_of_property) || 0);
   formData.append("facing",data.facing)
   formData.append("floor_no",data. floorNo)
   formData.append("total_floors",data.totalFloors)
   formData.append("parking_slots", parseInt(data.parking_slots) || 0);
-  // formData.append("parking_slots",data.parkingSlot)
-
   formData.append("image",data.propertyImage[0])
   console.log("Form Data:", Object.fromEntries(formData));
   console.log("form data..",formData);
