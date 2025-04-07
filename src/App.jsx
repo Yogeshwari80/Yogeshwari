@@ -1,8 +1,8 @@
 
 
 
-import './assets/css/adminlte.css'
-import './assets/css/adminlte.min.css'
+// import './assets/css/adminlte.css'
+// import './assets/css/adminlte.min.css'
 import { UserSidebar } from './components/layouts/UserSidebar'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Signup } from './components/common/Signup'
@@ -11,14 +11,16 @@ import { AddProperty } from './components/user/AddProperty'
 import axios from 'axios'
 import PrivateRoutes from './hooks/PrivateRoutes'
 import { useEffect } from 'react'
-import LandingPage from "./components/common/LandingPage";
 
-import { Properties } from './components/common/Properties'
+
+import { Inquiry } from './components/user/Inquiry'
+import { ResetPassword } from './components/common/ResetPassword'
+import { Landing } from './components/common/Landing'
+import { PropertSingle } from './components/common/PropertSingle'
 import { Services } from './components/common/Services'
 import { About } from './components/common/About'
 import { ContactUs } from './components/common/ContactUs'
-import { Inquiry } from './components/user/Inquiry'
-import { ResetPassword } from './components/common/ResetPassword'
+import { Properties } from './components/common/Properties'
 
 
 
@@ -44,7 +46,7 @@ function App() {
     
     <div
     className={
-      location.pathname === "/login" || location.pathname === "/signup"
+      location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/"
         ? ""
         : "app-wrapper"
     }
@@ -53,12 +55,15 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/resetpassword/:token" element ={<ResetPassword/>}></Route>
       <Route path="/signup" element={<Signup />} />
-      <Route path="/" element ={<LandingPage/>}></Route>
+      <Route path="/" element ={<Landing/>}></Route>
+      <Route path="/singleproperty" element ={<PropertSingle/>}></Route>
+      <Route path="/services" element ={<Services/>}></Route>
+      <Route path="/about" element ={<About/>}></Route>
+      <Route path="/contactus" element ={<ContactUs/>}></Route>
+      <Route path="/properties" element ={<Properties/>}></Route>
+
       {/* <Route path="/" element ={<LandingPage/>}></Route> */}
-     <Route path='/properties' element={<Properties/>}></Route>
-     <Route path='/services'element={<Services/>}></Route>
-     <Route path='/about' element={<About/>}></Route>
-     <Route path='/contact' element={<ContactUs/>}></Route>
+     
      
 
 

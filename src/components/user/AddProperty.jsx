@@ -215,7 +215,7 @@ const submitHandler = async (data) => {
                   } 
                   </select>  */}
                   <select className="form-select" onChange={(event) => { 
-  const selectedStateId = event.target.value;
+      const selectedStateId = event.target.value;
   setStateId(selectedStateId);
   getCitiesByState(selectedStateId); // Fetch cities based on the selected state
 }}>
@@ -227,7 +227,7 @@ const submitHandler = async (data) => {
 
       
 
-                </div>
+  </div>
                 
                 <div className="col">
                   <label htmlFor="city" className="form-label">City</label>

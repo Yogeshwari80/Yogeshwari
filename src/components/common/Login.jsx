@@ -8,7 +8,7 @@ import axios from 'axios';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import {Link, useNavigate } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+
 
 export const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,7 +30,7 @@ export const Login = () => {
 
       navigate("/user")
       alert("Login success");
-    
+     
       // if (res.data.user.role.name == "user") {
         if (res.data.user.role._id == "user") {
         toast.success('Login Successfully', {
@@ -211,38 +211,7 @@ export const Login = () => {
               <span><p style={{ color: 'red', fontSize: '12px', marginTop: '4px' }}>{errors.password?.message}</p></span>
             </div>
   
-            {/* <div style={{ textAlign: 'right', marginBottom: '20px' }}>
-              <Link to="/forgot-password" style={{
-                color:'#005555',
-                textDecoration: 'none',
-                fontSize: '14px'
-              }}>
-                Forgot Password?
-              </Link>
-            </div> */}
-{/* <div className="forgot-password-container" style={{ textAlign: 'right', marginBottom: '20px' }}> */}
-      {/* Single Forgot Password Link */}
-      {/* {!isForgotPasswordClicked ? (
-        <div className="forgot-password-link">
-          <Link to="#"  style={{
-                color:'#005555', */}
-                {/* // textDecoration: 'none',
-                fontSize: '14px'
-              }}onClick={() => setIsForgotPasswordClicked(true)}>
-            Forgot Password?
-          </Link>
-        </div>
-      ) : (
-        <div className="forgot-password-form">
-          <label>ENTER EMAIL</label>
-          <input
-            type="text"
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <button onClick={forgotPasswordHandler}>Submit</button>
-        </div>
-      )}
-    </div> */}
+          
      <div style={{ textAlign: "right", marginBottom: "20px" }}>
       {/* Forgot Password Link */}
       {!isForgotPasswordClicked ? (

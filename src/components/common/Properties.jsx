@@ -1,335 +1,350 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
-import background1 from "../../assets/images/bg1.jpg";
-import background2 from "../../assets/images/bg2.jpg";
-import background3 from "../../assets/images/bg3.jpg";
-import property1 from "../../assets/images/property1.jpg";
-import property2 from "../../assets/images/property2.jpg";
-import property3 from "../../assets/images/property3.jpg";
-import property4 from "../../assets/images/property4.jpg";
-import property5 from "../../assets/images/property5.jpg";
-import property6 from "../../assets/images/property6.jpg";
-import property7 from "../../assets/images/property7.jpg";
-import property8 from "../../assets/images/property8.jpg";
-import { div } from 'framer-motion/client';
+import { Navbar } from './Navbar'
+import '../../landing/assets/fonts/icommon/style.css';
+import '../../landing/assets/fonts/flaticon/flaticon.css';
+import '../../landing/css/tiny-slider.css';
+import '../../landing/css/aos.css';
+import '../../landing/css/style.css';
+// import '../../landing/js/aos';
+import '../../landing/js/counter';
+// import '../../landing/js/custom';
+import '../../landing/js/navbar';
+import '../../landing/js/tiny-slider';
+import 'aos/dist/aos.css';
+import 'tiny-slider/dist/tiny-slider.css';
+import AOS from 'aos';
 
+import heroBg1 from '../../landing/assets/img/hero_bg_1.jpg';
+import { Footer } from './Footer';
+import PropertyCard from './PropertyCard';
+import axios from 'axios';
 
-
-
-
-
-
-  
-
- 
 
 export const Properties = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [currentBackground, setCurrentBackground] = useState(background1);
-  const [fade, setFade] = useState(true);
-  useEffect(() => {
-      const images = [background1, background2, background3];
-      let index = 0;
-      const interval = setInterval(() => {
-        setFade(false);
-        setTimeout(() => {
-          index = (index + 1) % images.length;
-          setCurrentBackground(images[index]);
-          setFade(true);
-        }, 1000); // Fade out duration
-      }, 5000); // Change image every 5 seconds
-  
-      return () => clearInterval(interval);
-    }, []);
-    const nextSlide = () => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex + 1 < testimonials.length ? prevIndex + 1 : 0
-      );
-    };
-  
-    const prevSlide = () => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex - 1 >= 0 ? prevIndex - 1 : testimonials.length - 1
-      );
-    };
+
+  const [states, setStates] = useState([])
+    const [cities, setCities] = useState([])
+    const [areas, setAreas] = useState([])
+    const [stateId, setStateId] = useState("");
+const [cityId, setCityId] = useState("");
+
+
+   useEffect(() => {
+        AOS.init({
+          duration: 800,
+          easing: 'ease',
+          once: true,
+          offset: 120
+        });
+        getAllStates()
+      }, []);
+
+      const properties = [
+        {
+          price: "$1,2,000",
+          address: "Cg road",
+          location: "Ahmedabad, Gujarat",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },
+        {
+          price: "$1,291,000",
+          address: "Paldi",
+          location: "California, USA",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },
+        {
+          price: "$1,23331,000",
+          address: "5232 California Fake, Ave. 21BC",
+          location: "California, USA",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },
+        {
+          price: "$1,291,000",
+          address: "5232 California Fake, Ave. 21BC",
+          location: "California, USA",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },
+        {
+          price: "$1,291,000",
+          address: "5232 California Fake, Ave. 21BC",
+          location: "California, USA",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },
+        {
+          price: "$1,291,000",
+          address: "5232 California Fake, Ave. 21BC",
+          location: "California, USA",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },
+        {
+          price: "$1,291,000",
+          address: "5232 California Fake, Ave. 21BC",
+          location: "California, USA",
+          imageUrl: "images/img_1.jpg",
+          beds: 2,
+          baths: 2,
+          detailsLink: "/property-single.html"
+        },]
+
+
+        useEffect(() => {
+          getAllStates()
+        }, [])
+      
+        // const getAllStates = async () => {
+        //   try {
+        //     console.log("get all state");
+            
+        //     const fetchedState = await axios.get("/api/getStates")
+        //     console.log(fetchedState.data.data);
+            
+        //     setStates(fetchedState.data.data)
+        //   } catch (error) {
+        //     console.log(error);
+            
+        //   }
+        // }
+        
+        
+          
+        
+      
+        // const getCityByState = async (id) => {
+        //   console.log("get city by state");
+            
+        //     console.log(id);
+            
+        //     const fetchedCities = await axios.get(`/api/city/${id}`)
+        //     console.log(fetchedCities.data.data);
+        //     setCities(fetchedCities.data.data)
+      
+          
+        // }
+      
+        // const getAreaByCity = async (id) => {
+        //   console.log("get area by city");
+        //   console.log(id);
+          
+        //   const fetchedAreas = await axios.get(`/api/area/${id}`)
+        //   console.log(fetchedAreas.data.data);
+          
+        //   setAreas(fetchedAreas.data.data)
+          
+          
+        // }
 
         
-    const containerStyle = {
-        position: "relative", // Ensures overlay and content are positioned correctly
-        width: "100vw",
-        height: "70vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        color: "white",
-        overflow: "hidden"
-      };
-    
-      const backgroundStyle = {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundImage: `url(${currentBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        transition: "opacity 1s ease-in-out",
-        opacity: fade ? 1 : 0,
-        zIndex: -2,
-      };
-    
-      const overlayStyle = {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Dark overlay
-        zIndex: -1,
-      };
-    
-      const navStyle = {
-        backgroundColor: "#005555",
-        padding: "20px 25px",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        zIndex: 1000,
-        borderRadius: "12px",
-      };
-      const logoStyle = {
-        fontSize: "24px",
-        fontWeight: "bold",
-        color: "white",
-        textDecoration: "none",
-      };
-    
-      const menuStyle = {
-        display: "flex",
-        listStyle: "none",
-        gap: "40px",
-        color: "#fff",
-        fontSize: "1rem",
-        fontWeight: "bold",
-      };
-      const linkStyle = {
-        color: "white",
-        textDecoration: "none",
-        fontWeight: "500",
-      };
-      const dropdownStyle = {
-        position: "absolute",
-        backgroundColor: "#fff",
-        listStyle: "none",
-        padding: "10px",
-        borderRadius: "5px",
-        top: "100%",
-        left: 0,
-        boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
-        minWidth: "150px",
-        // display: dropdownOpen ? "block" : "none", // Show dropdown when dropdownOpen is true
-      };
-    
-      const dropdownItemStyle = {
-        color: "black",
-        textDecoration: "none",
-        display: "block",
-        padding: "8px 15px",
-        transition: "background 0.3s",
-      };
-    
-    
+  const getAllStates = async () => {
+    try {
+      const response = await axios.get("/api/getStates");
+      console.log("States fetched:", response.data);
+      setStates(response.data);
+    } catch (error) {
+      console.error("Error fetching states:", error.response ? error.response.data : error.message);
+    }
+  };
+  
+
+  const getCitiesByState = async (stateId) => {
+    try {
+      const response = await axios.get(`/api/city/${stateId}`);
+      console.log("Cities fetched for state:", stateId, response.data);
+      setCities(response.data);
+      setAreas([]); 
+    } catch (error) {
+      console.error("Error fetching cities:", error.response ? error.response.data : error.message);
+    }
+  };
+  
+  
+  const getAreasByCity = async (cityId) => {
+
+    try {
+      const response = await axios.get(`/api/area/${cityId}`);
+      console.log("Areas fetched for city:", cityId, response.data);
+      setAreas(response.data);
+    } catch (error) {
+      console.error("Error fetching areas:", error.response ? error.response.data : error.message);
+    }
+  };
+  
+
   return (
-<div>
-     <div style={containerStyle}>
-      {/* Navbar */}
-      <div style={backgroundStyle}></div>
-      <div style={overlayStyle}></div>
-      <div style={navStyle}>
-        <a href="index.html" style={logoStyle}>
-          Property
-        </a>
-       
-        <ul style={menuStyle}>
-      <li><Link to="/" style={{ color: "white", textDecoration: "none" }}>HOME</Link></li>
-      <li><Link to="/properties" style={{ color: "white", textDecoration: "none" }}>PROPERTIES</Link></li>
-      <li><Link to="/services" style={{ color: "white", textDecoration: "none" }}>SERVICES</Link></li>
-      <li><Link to="/about" style={{ color: "white", textDecoration: "none" }}>ABOUT</Link></li>
-      <li><Link to="/contact" style={{ color: "white", textDecoration: "none" }}>CONTACT US</Link></li>
-
-      {/* Account Dropdown */}
-      {/* <li 
-        style={{ position: "relative", cursor: "pointer" }} 
-        className="dropdown"
-        onMouseEnter={() => setDropdownOpen(true)}
-        onMouseLeave={() => setDropdownOpen(false)}
-      >
-        <Link to="#" style={{ color: "white", textDecoration: "none" }}>ACCOUNT ▾</Link>
-        <ul style={dropdownStyle} className="dropdown-menu">
-          <li><Link to="/login" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>Login</Link></li>
-          <li><Link to="/signup" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>Signup</Link></li>
-        </ul>
-      </li> */}
-      {/* Account Dropdown */}
-<li 
-  style={{ position: "relative", cursor: "pointer" }} 
-  className="dropdown"
-  onMouseEnter={() => setDropdownOpen(true)}
-  onMouseLeave={() => setDropdownOpen(false)}
->
-  <Link to="#" style={{ color: "white", textDecoration: "none" }}>ACCOUNT ▾</Link>
-  <ul 
-    style={{ 
-      ...dropdownStyle, 
-      display: dropdownOpen ? "block" : "none" // Ensure dropdown visibility is controlled
-    }} 
-    className="dropdown-menu"
+    <>
+  <Navbar/>
+  <div
+    className="hero page-inner overlay"
+    style={{ backgroundImage: `url(${heroBg1})` }}
   >
-    <li>
-      <Link to="/login" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>
-        Login
-      </Link>
-    </li>
-    <li>
-      <Link to="/signup" style={{ color: "#005555", textDecoration: "none", display: "block", padding: "10px 20px" }}>
-        Signup
-      </Link>
-    </li>
-  </ul>
-</li>
-
-    </ul>
- 
-   </div>
-   <h1>Properties</h1>
-   <br />
-   <h6 >Home    /   properties</h6>
-  </div>
-  {/* features properties */}
-   <div style={{ padding: "50px 0", backgroundColor: "#f8f9fa" }}>
-   <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-     <div style={{ textAlign: "center", marginBottom: "30px" }}>
-       <h2 style={{ fontWeight: "bold", color: "#004085" }}>Featured Properties</h2>
-     </div>
-     <div style={{ display: "flex", gap: "20px", overflowX: "auto" }}>
-       {[{ img: property1 }, { img: property2 }].map((property, index) => (
-         <div key={index} style={{ width: "300px", backgroundColor: "#fff", padding: "15px", borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}>
-           <a href="property-single.html" style={{ display: "block" }}>
-             <img src={property.img} alt="Property" style={{ width: "100%", height: "200px", borderRadius: "10px" }} />
-           </a>
-           <div style={{ padding: "15px 0" }}>
-             <div style={{ fontSize: "20px", fontWeight: "bold", color: "#007b5e" }}>$1,291,000</div>
-             <div style={{ color: "#6c757d", marginBottom: "10px" }}>5232 California Fake, Ave. 21BC</div>
-             <div style={{ fontWeight: "bold", marginBottom: "10px" }}>California, USA</div>
-             <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "10px" }}>
-               <span role="img" aria-label="bed">🏡</span> 2 beds
-               <span role="img" aria-label="bath">🌊</span> 2 baths
-             </div>
-             <a href="property-single.html" style={{ display: "block", textAlign: "center", backgroundColor: "#007b5e", color: "#fff", padding: "10px", borderRadius: "5px", textDecoration: "none" }}>
-               View Details
-             </a>
-           </div>
-         </div>
-       ))}
-     </div>
-   </div>
- </div>
- {/* footer */}
- <div style={{ backgroundColor: "#8888", padding: "50px 0" }}>
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        {/* Contact Section */}
-        <div>
-          <h4 style={{ fontWeight: "bold" ,color:"#005555"}}>CONTACT</h4>
-          <p>43 Raymouth Rd. Baltemoer, London 3910</p>
-          <p>+1(123)-456-7890</p>
-          <p>+1(123)-456-7890</p>
-          <p>info@mydomain.com</p>
+    <div className="container">
+      <div className="row justify-content-center align-items-center">
+        <div className="col-lg-9 text-center mt-5">
+          <h1 className="heading" data-aos="fade-up">
+            Properties
+          </h1>
+          {/* <nav
+            aria-label="breadcrumb"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <ol className="breadcrumb text-center justify-content-center">
+              <li className="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              {/* <li
+                className="breadcrumb-item active text-white-50"
+                aria-current="page"
+              >
+                Properties
+              </li> 
+            </ol>
+          </nav> */}
         </div>
+        <div className="container hero-content">
+        <div className="row justify-content-center align-items-center">
+          <div className="col-lg-9 text-center">
+            <h1 className="heading" data-aos="fade-up">
+           Find your dream home
+            </h1>
+            <form 
+              action="#" 
+              className="narrow-w form-search d-flex align-items-stretch mb-3" 
+              data-aos="fade-up" 
+              data-aos-delay="200"
+            >
+              {/* <div className="form-control px-4">
+              <input
+                type="text"
+                className="form-control px-4"
+                placeholder="Your ZIP code or City. e.g. New York"
+              /> */}
+              {/* <select defaultValue=""
+                className="form-control px-4  "
+                style={{padding:5}}
+              >
+                <option value="" disabled >
+                  Select State
+                </option>
+                <option value="10001">New York, NY (10001)</option>
+                <option value="90001">Los Angeles, CA (90001)</option>
+                <option value="60601">Chicago, IL (60601)</option>
+                <option value="75201">Dallas, TX (75201)</option>
+                <option value="94101">San Francisco, CA (94101)</option>
+              </select> */}
+              <select className="form-control px-4" style={{padding:5}}  onChange={(e) => {getCityByState(e.target.value)}} >
+                    <option value="">Select State</option>
+                    
+                  {
+                     states?.map((state , index) => {
 
-        {/* Sources Section */}
-        <div>
-          <h4 style={{ fontWeight: "bold",color:"#005555" }}>SOURCES</h4>
-          <div style={{ display: "flex", gap: "40px" }}>
-            <div>
-              <p>About us</p>
-              <p>Services</p>
-              <p>Vision</p>
-              <p>Mission</p>
-              <p>Terms</p>
-              <p>Privacy</p>
-            </div>
-            <div>
-              <p>Partners</p>
-              <p>Business</p>
-              <p>Careers</p>
-              <p>Blog</p>
-              <p>FAQ</p>
-              <p>Creative</p>
-            </div>
-          </div>
-        </div>
+                      return <option key={index} value={state._id}>{state.name}</option>
+                     })
+                  }
+                  </select>
+                  
+                  {/* <select className="form-control px-4" style={{padding:5}} id="city"  onChange={(e) => {getAreaByCity(e.target.value)}}>
+                    <option value="">Select City</option>
+                    {
+                     cities?.map((city , index) => {
+                      return <option key={index} value={city._id}>{city.name}</option>
+                     })
+                  }
+                  </select> */}
+                <select className="form-control px-4" style={{padding:5}} onChange={(e) => {
+  const selectedCityId = e.target.value;
+  setCityId(selectedCityId);
+  getAreasByCity(selectedCityId);
+}}>
+  <option value="">Select City</option>
+  {cities?.map((city) => (
+    <option key={city._id} value={city._id}>{city.name}</option>
+  ))}
+</select>
 
-        {/* Links Section */}
-        <div>
-          <h4 style={{ fontWeight: "bold",color:"#005555" }}>LINKS</h4>
-          <p>Our Vision</p>
-          <p>About us</p>
-          <p>Contact us</p>
-          {/* Social Media Icons */}
-          <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-            {["instagram", "twitter", "facebook", "linkedin", "pinterest", "dribbble"].map(
-              (icon, index) => (
-                <div
-                  key={index}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    backgroundColor: "#ddd",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <i className={`fab fa-${icon}`} style={{ fontSize: "18px" }}></i>
-                </div>
-              )
-            )}
+                
+                  {/* <select className="form-control px-4" style={{padding:5}} id="area">
+                    <option value="">Select Area</option>
+                    {
+                      areas?.map((area) => {
+                        return <option value={area._id}>{area.name}</option>
+                      })
+                    }
+                  </select> */}
+                  <select className="form-control px-4" style={{padding:5}} id="area" onChange={(event) => { 
+  getAreasByCity(event.target.value);
+}}>
+  <option value="">Select Area</option>
+  {areas?.map((area) => (
+    <option key={area._id} value={area._id}>{area.name}</option>
+  ))}
+</select>
+                
+              
+              {/* </div> */}
+              <button type="submit" className="btn btn-primary">
+                Search
+              </button>
+            </form>
           </div>
         </div>
       </div>
+      </div>
+    </div>
+  </div>
 
-      {/* Copyright Section */}
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "40px",
-          fontSize: "14px",
-        }}
-      >
-        <p>Copyright © 2025. All Rights Reserved. — Designed with love by Untree.co</p>
-        <p>Distributed by themewagon</p>
+
+  
+
+  
+  
+
+
+
+<div className="section section-properties">
+      <div className="container">
+        <div className="property-grid">
+          {properties.map((property, index) => (
+            <div key={index} className="property-grid-item">
+              <PropertyCard property={property} />
+            </div>
+          ))}
+        </div>
+
+        {/* Pagination Section */}
+        
       </div>
     </div>
 
 
 
+  <Footer/>
+  {/* /.site-footer */}
+  {/* Preloader */}
+  <div id="overlayer" style={{ opacity: "-0.1", display: "none" }} />
+  <div className="loader" style={{ opacity: "-0.1", display: "none" }}>
+    <div className="spinner-border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</>
 
-</div>
   )
 }
