@@ -22,11 +22,12 @@ import axios from 'axios';
 
 export const Properties = () => {
 
-  const [states, setStates] = useState([])
-    const [cities, setCities] = useState([])
-    const [areas, setAreas] = useState([])
-    const [stateId, setStateId] = useState("");
+const [states, setStates] = useState([])
+const [cities, setCities] = useState([])
+const [areas, setAreas] = useState([])
+const [stateId, setStateId] = useState("");
 const [cityId, setCityId] = useState("");
+
 
 
    useEffect(() => {
@@ -109,47 +110,13 @@ const [cityId, setCityId] = useState("");
           getAllStates()
         }, [])
       
-        // const getAllStates = async () => {
-        //   try {
-        //     console.log("get all state");
-            
-        //     const fetchedState = await axios.get("/api/getStates")
-        //     console.log(fetchedState.data.data);
-            
-        //     setStates(fetchedState.data.data)
-        //   } catch (error) {
-        //     console.log(error);
-            
-        //   }
-        // }
+        
         
         
           
         
       
-        // const getCityByState = async (id) => {
-        //   console.log("get city by state");
-            
-        //     console.log(id);
-            
-        //     const fetchedCities = await axios.get(`/api/city/${id}`)
-        //     console.log(fetchedCities.data.data);
-        //     setCities(fetchedCities.data.data)
-      
-          
-        // }
-      
-        // const getAreaByCity = async (id) => {
-        //   console.log("get area by city");
-        //   console.log(id);
-          
-        //   const fetchedAreas = await axios.get(`/api/area/${id}`)
-        //   console.log(fetchedAreas.data.data);
-          
-        //   setAreas(fetchedAreas.data.data)
-          
-          
-        // }
+    
 
         
   const getAllStates = async () => {
@@ -200,23 +167,7 @@ const [cityId, setCityId] = useState("");
           <h1 className="heading" data-aos="fade-up">
             Properties
           </h1>
-          {/* <nav
-            aria-label="breadcrumb"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <ol className="breadcrumb text-center justify-content-center">
-              <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
-              </li>
-              {/* <li
-                className="breadcrumb-item active text-white-50"
-                aria-current="page"
-              >
-                Properties
-              </li> 
-            </ol>
-          </nav> */}
+         
         </div>
         <div className="container hero-content">
         <div className="row justify-content-center align-items-center">
@@ -230,26 +181,8 @@ const [cityId, setCityId] = useState("");
               data-aos="fade-up" 
               data-aos-delay="200"
             >
-              {/* <div className="form-control px-4">
-              <input
-                type="text"
-                className="form-control px-4"
-                placeholder="Your ZIP code or City. e.g. New York"
-              /> */}
-              {/* <select defaultValue=""
-                className="form-control px-4  "
-                style={{padding:5}}
-              >
-                <option value="" disabled >
-                  Select State
-                </option>
-                <option value="10001">New York, NY (10001)</option>
-                <option value="90001">Los Angeles, CA (90001)</option>
-                <option value="60601">Chicago, IL (60601)</option>
-                <option value="75201">Dallas, TX (75201)</option>
-                <option value="94101">San Francisco, CA (94101)</option>
-              </select> */}
-              <select className="form-control px-4" style={{padding:5}}  onChange={(e) => {getCityByState(e.target.value)}} >
+             
+              <select className="form-control px-4" style={{padding:5}}  onChange={(e) => {getCitiesByState(e.target.value)}} >
                     <option value="">Select State</option>
                     
                   {
@@ -259,15 +192,7 @@ const [cityId, setCityId] = useState("");
                      })
                   }
                   </select>
-                  
-                  {/* <select className="form-control px-4" style={{padding:5}} id="city"  onChange={(e) => {getAreaByCity(e.target.value)}}>
-                    <option value="">Select City</option>
-                    {
-                     cities?.map((city , index) => {
-                      return <option key={index} value={city._id}>{city.name}</option>
-                     })
-                  }
-                  </select> */}
+                 
                 <select className="form-control px-4" style={{padding:5}} onChange={(e) => {
   const selectedCityId = e.target.value;
   setCityId(selectedCityId);
@@ -280,17 +205,8 @@ const [cityId, setCityId] = useState("");
 </select>
 
                 
-                  {/* <select className="form-control px-4" style={{padding:5}} id="area">
-                    <option value="">Select Area</option>
-                    {
-                      areas?.map((area) => {
-                        return <option value={area._id}>{area.name}</option>
-                      })
-                    }
-                  </select> */}
-                  <select className="form-control px-4" style={{padding:5}} id="area" onChange={(event) => { 
-  getAreasByCity(event.target.value);
-}}>
+                 
+<select className="form-control px-4" style={{padding:5}} id="area">
   <option value="">Select Area</option>
   {areas?.map((area) => (
     <option key={area._id} value={area._id}>{area.name}</option>
@@ -308,7 +224,7 @@ const [cityId, setCityId] = useState("");
       </div>
       </div>
     </div>
-  </div>
+</div>
 
 
   

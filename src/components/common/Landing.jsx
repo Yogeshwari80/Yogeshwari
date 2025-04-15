@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../landing/assets/fonts/icommon/style.css';
 import '../../landing/assets/fonts/flaticon/flaticon.css';
 import '../../landing/css/tiny-slider.css';
@@ -26,8 +26,11 @@ import { PopularProperty } from './PopularProperty';
 import { Testimonials } from './Testimonials';
 import CounterSection from './CounterSection';
 import { Footer } from './Footer';
+import { Agent } from './Agent';
 
 export const Landing = () => {
+  const [showAgent, setShowAgent] = useState(false);
+
 
   useEffect(() => {
     window.addEventListener('resize', AOS.refresh);
@@ -225,19 +228,21 @@ export const Landing = () => {
         <h2 className="mb-4" data-aos="fade-up" data-aos-delay="400">
           Be a part of our growing real state agents
         </h2>
-        <p data-aos="fade-up" data-aos-delay="500">
-          <a
-            href="#"
-            target="_blank"
-            className="btn btn-primary text-white py-3 px-4"
-          >
-            Apply for Real Estate agent
-          </a>
-        </p>
+      
+       
+         <p data-aos="fade-up" data-aos-delay="500">
+         <button
+  onClick={() => setShowAgent(!showAgent)}
+  className="btn btn-primary text-white py-3 px-4"
+>
+  Apply for Real Estate agent
+</button>
+
+            </p>
       </div>
     </div>
   </div>
-
+  {showAgent && <Agent />}
 
   <div className="section section-5 bg-light">
     <div className="container">

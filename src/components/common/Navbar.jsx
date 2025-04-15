@@ -92,7 +92,7 @@ export const Navbar = () => {
                     </li>
                     <li>
                       <Link to="#">Sub Menu Two</Link>
-                    </li>
+                    </li>+
                     <li>
                       <Link to="#">Sub Menu Three</Link>
                     </li>

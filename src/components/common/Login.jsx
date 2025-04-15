@@ -15,12 +15,14 @@ export const Login = () => {
   const [isForgotPasswordClicked, setIsForgotPasswordClicked] = useState(false);
   const [email, setEmail] = useState("");
   const navigate = useNavigate()
-
+  
+  
+  
  
   const submitHandler = async (data) => {
     console.log(data);
     data.roleId = "67c4b09c8385fb8187120578"
-    const res = await axios.post("http://localhost:8000/api/user/login", data);
+    const res = await axios.post("http://localhost:8000/api/user/login/", data);
     console.log(res.data.user._id); //axios
     console.log(res.data); //api response
     if(res.status === 200){
@@ -51,11 +53,13 @@ export const Login = () => {
       }
     }
     
+    
   };
   const forgotPasswordHandler =async()=>{
     alert(`Password reset link sent to ${email}`);
     console.log(email)
     const res = await axios.post("api/forgotpassword?email="+email)
+    // const res = await axios.post("api/forgotpassword?email=" + email)
     console.log(res.data)
   }
 
@@ -90,7 +94,7 @@ export const Login = () => {
       },
     },
   };
-
+  
   return (
     
     <div style={{ 
@@ -113,7 +117,9 @@ export const Login = () => {
         height: '100%',
         background: 'rgba(0, 0, 0, 0.6)',
         backdropFilter: 'blur(5px)'
-      }}></div>
+      }}>
+
+      </div>
   
       <div style={{
         width: '470px',
@@ -286,7 +292,7 @@ export const Login = () => {
     </div>
 
 
-            <button
+     <button
               type="submit"
               style={{
                 width: '100%',
@@ -325,5 +331,7 @@ export const Login = () => {
         </div>
       </div>
     </div>
+
   );
 };
+

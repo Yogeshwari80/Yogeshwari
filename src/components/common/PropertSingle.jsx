@@ -1,4 +1,5 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
 import { Navbar } from './Navbar'
 import '../../landing/assets/fonts/icommon/style.css';
 import '../../landing/assets/fonts/flaticon/flaticon.css';
@@ -16,20 +17,40 @@ import AOS from 'aos';
 import { Footer } from './Footer';
 import heroBg3 from '../../landing/assets/img/hero_bg_3.jpg';
 import img2 from '../../landing/assets/img/img_2.jpg';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const PropertSingle = () => {
+
+  const [property, setProperty] = useState({})
+
+  useEffect(() => {
+    fetchSingleProperty()
+    }, [])
+  
+    let params = useParams()
+    let propertyId = params.propertyid
+
+    const fetchSingleProperty = async () => {
+
+      console.log(propertyId);
+      const fetchedSingleProperty = await axios.get(`/api/get_properties/${propertyId}`)
+      console.log(fetchedSingleProperty.data.data);
+      setProperty(fetchedSingleProperty.data.data)
+      }
+
   return (
     <>
   <Navbar/>
   <div
     className="hero page-inner overlay"
-    style={{ backgroundImage: `url(${heroBg3})` }}
+    style={{ backgroundImage: url(`${property.propertyImageURL}`) }}
   >
     <div className="container">
       <div className="row justify-content-center align-items-center">
         <div className="col-lg-9 text-center mt-5">
           <h1 className="heading aos-init aos-animate" data-aos="fade-up">
-            5232 California AVE. 21BC
+            {property.propertyName}
           </h1>
           <nav
             aria-label="breadcrumb"
@@ -39,17 +60,12 @@ export const PropertSingle = () => {
           >
             <ol className="breadcrumb text-center justify-content-center">
               <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="breadcrumb-item">
-                <a href="properties.html">Properties</a>
+                <Link to="/properties">Properties</Link>
               </li>
-              <li
-                className="breadcrumb-item active text-white-50"
-                aria-current="page"
-              >
-                5232 California AVE. 21BC
-              </li>
+              
             </ol>
           </nav>
         </div>
@@ -108,41 +124,13 @@ export const PropertSingle = () => {
                     }}
                   >
                     <img
-                      src={img2}
+                      src={property.propertyImageURL}
                       alt="Image"
                       className="img-fluid tns-item tns-slide-cloned"
                       aria-hidden="true"
                       tabIndex={-1}
                     />
-                    <img
-                      src="images/img_1.jpg"
-                      alt="Image"
-                      className="img-fluid tns-item tns-slide-active"
-                      id="tns1-item0"
-                    />
-                    <img
-                      src="images/img_2.jpg"
-                      alt="Image"
-                      className="img-fluid tns-item"
-                      id="tns1-item1"
-                      aria-hidden="true"
-                      tabIndex={-1}
-                    />
-                    <img
-                      src="images/img_3.jpg"
-                      alt="Image"
-                      className="img-fluid tns-item"
-                      id="tns1-item2"
-                      aria-hidden="true"
-                      tabIndex={-1}
-                    />
-                    <img
-                      src="images/img_1.jpg"
-                      alt="Image"
-                      className="img-fluid tns-item tns-slide-cloned"
-                      aria-hidden="true"
-                      tabIndex={-1}
-                    />
+                    
                   </div>
                 </div>
               </div>
@@ -150,8 +138,8 @@ export const PropertSingle = () => {
           </div>
         </div>
         <div className="col-lg-4">
-          <h2 className="heading text-primary">5232 California Ave. 21BC</h2>
-          <p className="meta">California, United States</p>
+          <h2 className="heading text-primary">{property.address}</h2>
+          <p className="meta">{property?.areaId?.name}, {property?.cityId?.name}, {property?.stateId?.name}.</p>
           <p className="text-black-50">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
             laborum quo quos omnis sed magnam id, ducimus saepe, debitis error
@@ -163,12 +151,12 @@ export const PropertSingle = () => {
             Doloremque, reprehenderit cupiditate error laudantium qui, esse quam
             debitis, eum cumque perferendis, illum harum expedita.
           </p>
-          <a href="property-single.html" className="btn btn-primary py-2 px-3 ">
+          <Link to={`/inquiry/${propertyId}`} className="btn btn-primary py-2 px-3 ">
             Contact Us
-          </a>
-          <a href="property-single.html" className="btn btn-primary py-2 px-3" style={{marginLeft:10}}>
+          </Link>
+          <Link to="/favourite" className="btn btn-primary py-2 px-3" style={{marginLeft:10}}>
             Add To Favourite
-          </a>
+          </Link>
 
 
           <div className="d-block agent-box p-5">
@@ -222,6 +210,7 @@ export const PropertSingle = () => {
     <div className="spinner-border" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
+  
   </div>
 </>
 

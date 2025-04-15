@@ -24,6 +24,7 @@ import { Properties } from './components/common/Properties'
 
 
 
+
 function App() {
   // useLocation hook from react router dom to see current end point
   const location = useLocation()
@@ -61,6 +62,7 @@ function App() {
       <Route path="/about" element ={<About/>}></Route>
       <Route path="/contactus" element ={<ContactUs/>}></Route>
       <Route path="/properties" element ={<Properties/>}></Route>
+   
 
       {/* <Route path="/" element ={<LandingPage/>}></Route> */}
      

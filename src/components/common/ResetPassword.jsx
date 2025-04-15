@@ -16,9 +16,10 @@ export const ResetPassword = () => {
 
     const obj = {
       password: data.password,
+      confirmPassword: data.confirmPassword,
       token: token,
     };
-
+    
     try {
       const res = await axios.post("api/resetpassword", obj);
       console.log(res.data);
@@ -39,6 +40,7 @@ export const ResetPassword = () => {
         backgroundColor: "#f4f4f4",
       }}
     >
+
       <div
         style={{
           width: "400px",
@@ -140,6 +142,7 @@ export const ResetPassword = () => {
           >
             Reset Password
           </button>
+        
         </form>
       </div>
     </div>
