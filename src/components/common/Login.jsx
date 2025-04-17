@@ -30,7 +30,7 @@ export const Login = () => {
         // localStorage.setItem("role",res.data.user.role.name)
     console.log(res);
 
-      navigate("/user")
+      navigate("/")
       alert("Login success");
      
       // if (res.data.user.role.name == "user") {

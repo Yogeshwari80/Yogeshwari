@@ -118,11 +118,13 @@ const submitHandler = async (data) => {
   formData.append("floor_no",data. floorNo)
   formData.append("total_floors",data.totalFloors)
   formData.append("parking_slots", parseInt(data.parking_slots) || 0);
-  formData.append("image",data.propertyImage[0])
+ formData.append("image", data.propertyImage[0]);
+
   console.log("Form Data:", Object.fromEntries(formData));
   console.log("form data..",formData);
 
   const res = await axios.post("http://localhost:8000/api/create_property_file",formData)
+  
   console.log(res.data);
  
 

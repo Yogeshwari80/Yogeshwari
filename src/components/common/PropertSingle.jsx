@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from 'react'
 import { Navbar } from './Navbar'
 import '../../landing/assets/fonts/icommon/style.css';
@@ -17,34 +18,112 @@ import AOS from 'aos';
 import { Footer } from './Footer';
 import heroBg3 from '../../landing/assets/img/hero_bg_3.jpg';
 import img2 from '../../landing/assets/img/img_2.jpg';
+import agentImg from '../../landing/assets/img/person_2-min.jpg';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const PropertSingle = () => {
 
   const [property, setProperty] = useState({})
+  const [favouriteProperty, setFavouriteProperty] = useState([])
+  const [favButton,setFavButton] = useState(false)
+  const [favouriteId,setFavourites] = useState(null)
+
+
 
   useEffect(() => {
     fetchSingleProperty()
-    }, [])
+    getFavouriteProperties()
+ 
+    
+    
+    
+  }, [favButton])
   
     let params = useParams()
-    let propertyId = params.propertyid
+    let property_id = params.propertyid
+
+    
 
     const fetchSingleProperty = async () => {
 
-      console.log(propertyId);
-      const fetchedSingleProperty = await axios.get(`/api/get_properties/${propertyId}`)
-      console.log(fetchedSingleProperty.data.data);
+      console.log(property_id);
+      const fetchedSingleProperty = await axios.get(`/api/property/${property_id}`)
+      console.log(fetchedSingleProperty);
       setProperty(fetchedSingleProperty.data.data)
+
+      
+      
+    }
+
+
+    const addToFavourite = async () => {
+      try {
+        const data = {
+          user_id: localStorage.getItem("id"),
+          property_id: property_id,
+        };
+    
+        const res = await axios.post(`/api/add_favourite`, data);
+        console.log("Added to favourites:", res.data);
+        getFavouriteProperties(); // Refresh
+      } catch (err) {
+        console.error("Error adding to favourites:", err);
       }
+    };
+    
+    const removeFromFavourite = async () => {
+      if (!favouriteId) return;
+    
+      try {
+        const res = await axios.delete(`/api/remove_favourite/${favouriteId}`);
+        console.log("Removed from favourite", res.data);
+        getFavouriteProperties(); // Refresh
+      } catch (error) {
+        console.error("Error removing favourite", error);
+      }
+    };
+    
+    
+
+    const getFavouriteProperties = async () => {
+      const userId = localStorage.getItem("id");
+    
+      try {
+        const response = await axios.get(`/api/get_favourites/${userId}`);
+        const favourites = response.data;
+    
+        setFavouriteProperty(favourites);
+    
+        const currentFavourite = favourites.find(
+          (fav) => fav.propertyId?._id === property_id || fav.property_id?._id === property_id
+        );
+    
+        if (currentFavourite) {
+          setFavButton(true);
+          setFavourites(currentFavourite._id); // This is favouriteId
+        } else {
+          setFavButton(false);
+          setFavourites(null);
+        }
+    
+      } catch (error) {
+        console.error("Error fetching favourites", error);
+      }
+    };
+    
+    
+    
+    
+        
+    
 
   return (
     <>
   <Navbar/>
   <div
     className="hero page-inner overlay"
-    style={{ backgroundImage: url(`${property.propertyImageURL}`) }}
+    style={{ backgroundImage: `url(${property.image_url})` }}
   >
     <div className="container">
       <div className="row justify-content-center align-items-center">
@@ -124,7 +203,7 @@ export const PropertSingle = () => {
                     }}
                   >
                     <img
-                      src={property.propertyImageURL}
+                      src={property.image_url}
                       alt="Image"
                       className="img-fluid tns-item tns-slide-cloned"
                       aria-hidden="true"
@@ -140,32 +219,76 @@ export const PropertSingle = () => {
         <div className="col-lg-4">
           <h2 className="heading text-primary">{property.address}</h2>
           <p className="meta">{property?.areaId?.name}, {property?.cityId?.name}, {property?.stateId?.name}.</p>
-          <p className="text-black-50">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
-            laborum quo quos omnis sed magnam id, ducimus saepe, debitis error
-            earum, iste dicta odio est sint dolorem magni animi tenetur.
-          </p>
-          <p className="text-black-50">
-            Perferendis eligendi reprehenderit, assumenda molestias nisi eius
-            iste reiciendis porro tenetur in, repudiandae amet libero.
-            Doloremque, reprehenderit cupiditate error laudantium qui, esse quam
-            debitis, eum cumque perferendis, illum harum expedita.
-          </p>
-          <Link to={`/inquiry/${propertyId}`} className="btn btn-primary py-2 px-3 ">
+          <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: "0 10px" }}>
+  <tbody>
+    <tr>
+      <td><i className="fa fa-tag" style={{ color: "#333", marginRight: "8px" }}></i><strong>Price:₹15000000</strong> {property.basePrice}</td>
+      <td><i className="fa fa-map-marker" style={{ color: "#333", marginRight: "8px" }}></i><strong>Nearby Landmark:GEMS School</strong> {property.nearbyLandmark}</td>
+    </tr>
+    <tr>
+      <td><i className="fa fa-expand" style={{ color: "#333", marginRight: "8px" }}></i><strong>Built Up Area:1600</strong> {property.builtUpArea}</td>
+      <td><i className="fa fa-compress" style={{ color: "#333", marginRight: "8px" }}></i><strong>Carpet Area:1200</strong> {property.carpetArea}</td>
+    </tr>
+    <tr>
+      <td><i className="fa fa-bed" style={{ color: "#333", marginRight: "8px" }}></i><strong>Bedrooms:</strong> {property.bedrooms}</td>
+      <td><i className="fa fa-bath" style={{ color: "#333", marginRight: "8px" }}></i><strong>Bathrooms:</strong> {property.bathrooms}</td>
+    </tr>
+    <tr>
+      <td><i className="fa fa-sun-o" style={{ color: "#333", marginRight: "8px" }}></i><strong>Balconies:</strong> {property.balconies}</td>
+      <td><i className="fa fa-car" style={{ color: "#333", marginRight: "8px" }}></i><strong>Parking Slot:2</strong> {property.parkingSlot}</td>
+      
+    </tr>
+    <tr>
+      <td><i className="fa fa-hourglass-half" style={{ color: "#333", marginRight: "8px" }}></i><strong>Property Age:8</strong> {property.propertyAge}</td>
+      <td><i className="fa fa-compass" style={{ color: "#333", marginRight: "8px" }}></i><strong>Facing Direction:North</strong> {property.facingDirection}</td>
+    </tr>
+    <tr>
+    
+  <td style={{ color: "#333", margin: 0 }}>
+    <i className="fas fa-couch" style={{ color: "#333", marginRight: "8px" }}></i>
+    <strong style={{ color: "#333" }}>Furnishing Status:</strong> {property.furnishingStatus} – A thoughtfully designed space for cozy living.
+  </td>
+
+</tr>
+
+
+
+   
+  </tbody>
+</table>
+          
+          <p style={{ color: "#333" }}>
+  <i className="fa fa-home" style={{ color: "#2c3e50", marginRight: "8px" }}></i>
+  Discover modern living in this beautifully designed apartment.  
+  Spacious interiors, smart amenities, and a prime location.  
+  Perfect for those who crave comfort and convenience.  
+  Enjoy a secure, vibrant community and a lifestyle of ease.  
+  This is more than just a home — it's where you belong.
+</p>
+          <Link to={`/inquiry/${property_id}`} className="btn btn-primary py-2 px-3 ">
             Contact Us
           </Link>
-          <Link to="/favourite" className="btn btn-primary py-2 px-3" style={{marginLeft:10}}>
-            Add To Favourite
-          </Link>
+      
+          {
+            favButton ? 
+            <div onClick={removeFromFavourite} className="btn btn-primary py-2 px-3" style={{marginLeft:10}}>
+              Remove From Wishlist
+            </div> : 
+            <div onClick={addToFavourite} className="btn btn-primary py-2 px-3" style={{marginLeft:10}}>
+              Add To Wishlist
+            </div>
+          }
+
 
 
           <div className="d-block agent-box p-5">
             <div className="img mb-4">
-              <img
-                src="images/person_2-min.jpg"
-                alt="Image"
-                className="img-fluid"
-              />
+            <img
+  src={agentImg}
+  alt="Agent"
+  className="img-fluid"
+/>
+
             </div>
             <div className="text">
               <h3 className="mb-0">Alicia Huston</h3>
@@ -210,7 +333,6 @@ export const PropertSingle = () => {
     <div className="spinner-border" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
-  
   </div>
 </>
 

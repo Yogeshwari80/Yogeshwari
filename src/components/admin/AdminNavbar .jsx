@@ -14,7 +14,7 @@ import '../../landing/js/counter';
 import '../../landing/js/navbar';
 import '../../landing/js/tiny-slider';
 
-export const Navbar = () => {
+export const AdminNavbar = () => {
   const location = useLocation()
 
   return (
@@ -28,9 +28,9 @@ export const Navbar = () => {
         <div className="site-mobile-menu-body">
         <ul className="site-nav-wrap">
           <li className={location.pathname === '/' ? 'active' : ''}>
-           <Link to="/">Home</Link>
+           <Link to="/admin/allusers">All Users </Link>
           </li>
-          <li className={`has-children ${location.pathname === '/properties' ? 'active' : ''}`}>
+          <li className={`has-children ${location.pathname === '/admin/alluser' ? 'active' : ''}`}>
             <span
              className="arrow-collapse collapsed"
              data-bs-toggle="collapse"
@@ -85,49 +85,17 @@ export const Navbar = () => {
             Property
           </Link>
           <ul className="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-            <li className={location.pathname === '/' ? 'active' : ''}>
-              <Link to="/">Home</Link>
+            <li className={location.pathname === '/admin/alluser' ? 'active' : ''}>
+              <Link to="/admin/alluser">All Users</Link>
             </li>
-            <li className={`has-children ${location.pathname === '/properties' ? 'active' : ''}`}>
-              <Link >Properties</Link>
-              <ul className="dropdown">
-                <li>
-                  <Link to="/properties">Search Property</Link>
-                </li>
-                <li>
-                  <Link to="/add-property">Add Property</Link>
-                </li>
-                <li className="has-children">
-                  <Link to="#">Dropdown</Link>
-                  <ul className="dropdown">
-                    <li>
-                      <Link to="#">Sub Menu One</Link>
-                    </li>
-                    <li>
-                      <Link to="#">Sub Menu Two</Link>
-                    </li>
-                    <li>
-                      <Link to="#">Sub Menu Three</Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+            <li className={` ${location.pathname === '/admin/allproperty' ? 'active' : ''}`}>
+              <Link to="/admin/allproperty">All Property</Link>
+              
             </li>
-            <li className={location.pathname === '/services' ? 'active' : ''}>
-              <Link to="/services">Services</Link>
+            <li className={location.pathname === '/admin/allinquiry' ? 'active' : ''}>
+              <Link to="/admin/allinquiry">All Inquiry</Link>
             </li>
-            <li className={location.pathname === '/about' ? 'active' : ''}>
-              <Link to="/about">About</Link>
-            </li>
-            <li className={location.pathname === '/contactus' ? 'active' : ''}>
-              <Link to="/contactus">Contact Us</Link>
-            </li>
-            <li className={location.pathname === '/favouriteprop' ? 'active' : ''}>
-              <Link to="/favouriteprop">Favourite </Link>
-            </li>
-            <li className={location.pathname === '/login' ? 'active' : ''}>
-              <Link to="/login">Login</Link>
-            </li>
+            
           </ul>
           <Link
             to="#"

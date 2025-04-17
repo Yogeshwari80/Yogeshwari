@@ -7,6 +7,7 @@ import 'aos/dist/aos.css'; // Import AOS CSS
 import heroBg1 from '../../landing/assets/img/hero_bg_1.jpg';
 import heroBg2 from '../../landing/assets/img/hero_bg_2.jpg';
 import heroBg3 from '../../landing/assets/img/hero_bg_3.jpg';
+import { Link } from 'react-router-dom';
 
 export const Hero = () => {
     const sliderRef = useRef(null);
@@ -102,14 +103,17 @@ export const Hero = () => {
               data-aos="fade-up" 
               data-aos-delay="200"
             >
-              <input
+              {/* <input
                 type="text"
                 className="form-control px-4"
                 placeholder="Your ZIP code or City. e.g. New York"
-              />
-              <button type="submit" className="btn btn-primary">
+              /> */}
+             <Link to={`/properties`}>
+              <button  style={{width:500}} data-aos="fade-up" data-aos-delay="200" type="submit" className="btn btn-primary">
                 Search
               </button>
+              </Link>
+              
             </form>
           </div>
         </div>

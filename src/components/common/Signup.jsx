@@ -23,18 +23,7 @@ export const Signup = () => {
     try {
       const res = await axios.post("http://localhost:8000/api/user/", data);
 
-      // if (res.status === 200) {
-      //   toast.success("Signed up Successfully", {
-      //     position: "top-left",
-      //     autoClose: 3000,
-      //     theme: "light",
-      //     transition: Bounce,
-      //   });
-
-      //   setTimeout(() => {
-      //     navigate("/login");
-      //   }, 3000);
-      // }
+      
       if (res.status === 201) {
         alert("Signup success");
         navigate("/login") // check in app.j slogin...

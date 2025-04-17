@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react'
-import { Navbar } from './Navbar'
 import '../../landing/assets/fonts/icommon/style.css';
 import '../../landing/assets/fonts/flaticon/flaticon.css';
 import '../../landing/css/tiny-slider.css';
@@ -16,12 +15,14 @@ import 'tiny-slider/dist/tiny-slider.css';
 import AOS from 'aos';
 
 import heroBg1 from '../../landing/assets/img/hero_bg_1.jpg';
-import { Footer } from './Footer';
-import PropertyCard from './PropertyCard';
+// import PropertyCard from './PropertyCard';
 import axios from 'axios';
+import { AdminNavbar } from './AdminNavbar ';
+import { Footer } from '../common/Footer';
+import PropertyCard from '../common/PropertyCard';
 
 
-export const Properties = () => {
+export const Allproperty = () => {
 
  
 const [states, setStates] = useState([])
@@ -95,7 +96,7 @@ const [cityId, setCityId] = useState("");
 
   return (
     <>
-  <Navbar/>
+  <AdminNavbar/>
   <div
     className="hero page-inner overlay"
     style={{ backgroundImage: `url(${heroBg1})` }}
@@ -104,7 +105,7 @@ const [cityId, setCityId] = useState("");
       <div className="row justify-content-center align-items-center">
         <div className="col-lg-9 text-center mt-5">
           <h1 className="heading" data-aos="fade-up">
-            Properties
+            All Properties
           </h1>
           {/* <nav
             aria-label="breadcrumb"
@@ -124,96 +125,7 @@ const [cityId, setCityId] = useState("");
             </ol>
           </nav> */}
         </div>
-        <div className="container hero-content">
-        <div className="row justify-content-center align-items-center">
-          <div className="col-lg-9 text-center">
-            <h1 className="heading" data-aos="fade-up">
-           Find your dream home
-            </h1>
-            <form 
-              action="#" 
-              className="narrow-w form-search d-flex align-items-stretch mb-3" 
-              data-aos="fade-up" 
-              data-aos-delay="200"
-            >
-              {/* <div className="form-control px-4">
-              <input
-                type="text"
-                className="form-control px-4"
-                placeholder="Your ZIP code or City. e.g. New York"
-              /> */}
-              {/* <select defaultValue=""
-                className="form-control px-4  "
-                style={{padding:5}}
-              >
-                <option value="" disabled >
-                  Select State
-                </option>
-                <option value="10001">New York, NY (10001)</option>
-                <option value="90001">Los Angeles, CA (90001)</option>
-                <option value="60601">Chicago, IL (60601)</option>
-                <option value="75201">Dallas, TX (75201)</option>
-                <option value="94101">San Francisco, CA (94101)</option>
-              </select> */}
-         <select className="form-control px-4" style={{padding:5}}  onChange={(e) => {getCitiesByState(e.target.value)}} >
-                    <option value="">Select State</option>
-                    
-                   {
-                      states?.map((state , index) => {
-
-                       return <option key={index} value={state._id}>{state.name}</option>
-                      })
-                   }
-                   </select>
-                  
-                  {/* <select className="form-control px-4" style={{padding:5}} id="city"  onChange={(e) => {getAreaByCity(e.target.value)}}>
-                    <option value="">Select City</option>
-                    {
-                     cities?.map((city , index) => {
-                      return <option key={index} value={city._id}>{city.name}</option>
-                     })
-                  }
-                  </select>
-                
-                
-                
-                  <select className="form-control px-4" style={{padding:5}} id="area">
-                    <option value="">Select Area</option>
-                    {
-                      areas?.map((area) => {
-                        return <option value={area._id}>{area.name}</option>
-                      })
-                    }
-                  </select> */}
-                
-                <select className="form-control px-4" style={{padding:5}} onChange={(e) => {
-  const selectedCityId = e.target.value;
-  setCityId(selectedCityId);
-  getAreasByCity(selectedCityId);
-}}>
-  <option value="">Select City</option>
-  {cities?.map((city) => (
-    <option key={city._id} value={city._id}>{city.name}</option>
-  ))}
-</select>
-
-                
-                 
-<select className="form-control px-4" style={{padding:5}} id="area">
-  <option value="">Select Area</option>
-  {areas?.map((area) => (
-    <option key={area._id} value={area._id}>{area.name}</option>
-  ))}
-</select>
-              {/* </div> */}
-              <button type="submit" className="btn btn-primary">
-                Search
-              </button>
-              
-            </form>
-          </div>
-        </div>
-      </div>
+        
       </div>
     </div>
   </div>

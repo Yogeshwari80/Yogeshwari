@@ -21,6 +21,21 @@ import { Services } from './components/common/Services'
 import { About } from './components/common/About'
 import { ContactUs } from './components/common/ContactUs'
 import { Properties } from './components/common/Properties'
+import { Favourite } from './components/common/Favourite'
+import { PropertyInquiry } from './components/common/PropertyInquiry'
+import { AdminSidebar } from './components/admin/AdminSidebar '
+import { AllUser } from './components/admin/AllUser'
+import { Allproperty } from './components/admin/Allproperty'
+import { AllInquiry } from './components/admin/AllInquiry'
+
+
+
+
+
+// import { LandingPage } from './components/common/LandingPage'
+
+
+
 
 
 
@@ -57,16 +72,24 @@ function App() {
       <Route path="/resetpassword/:token" element ={<ResetPassword/>}></Route>
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element ={<Landing/>}></Route>
-      <Route path="/singleproperty" element ={<PropertSingle/>}></Route>
+      <Route path="/singleproperty/:propertyid" element ={<PropertSingle/>}></Route>
+      <Route path='/inquiry/:propertyid' element={<PropertyInquiry/>}></Route>
       <Route path="/services" element ={<Services/>}></Route>
       <Route path="/about" element ={<About/>}></Route>
       <Route path="/contactus" element ={<ContactUs/>}></Route>
       <Route path="/properties" element ={<Properties/>}></Route>
-   
-
+       <Route path='/favouriteprop' element={<Favourite/>}></Route>
+       
+       
+       <Route path='/add-property' element={<AddProperty></AddProperty>}></Route>
+       <Route path='/admin' >
+          <Route path='alluser' element={<AllUser/>}></Route>
+          <Route path='allproperty' element={<Allproperty/>}></Route>
+          <Route path='allinquiry' element={<AllInquiry/>}></Route>
+       </Route>
+      {/* <Route path='/admin' element={<AdminSidebar></AdminSidebar>}></Route> */}
       {/* <Route path="/" element ={<LandingPage/>}></Route> */}
-     
-     
+
 
 
 
@@ -76,10 +99,14 @@ function App() {
         <Route path="/user" element={<UserSidebar />}>
           <Route path="add-property" element={<AddProperty />} />
           <Route path='inquiry' element={<Inquiry></Inquiry>}></Route>
-       
+          
         </Route>
         
         
+       
+          
+       
+       
       </Route>
     </Routes>
   </div>
